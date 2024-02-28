@@ -1,0 +1,60 @@
+import { createSlice } from "@reduxjs/toolkit";
+import instance from "../../utils/axios";
+import { dispatch } from "../index";
+
+const initialState = {
+  users: [],
+  admin: [],
+  loading: false,
+};
+
+const userdata = createSlice({
+  name: "user",
+  initialState: initialState,
+  reducers: {
+    getAdminData: (state, action) => {
+      state.admin = action.payload;
+    },
+    getUserData :(state, action) =>{
+      state.users = action.payload;
+    }
+  },
+});
+
+export default userdata.reducer;
+
+export const getAdminData = () => {
+  return async () => {
+    try {
+      const response = await instance.get("/user/admin");
+      dispatch(userdata.actions.getAdminData(response.data.data.admin));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const changeAdminData = (data) => {
+  return async () => {
+    try {
+      const response = await instance.put("/user/updateadmin", data);
+      // console.log(response);
+      dispatch(userdata.actions.getAdminData(response.data.data.admin));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+
+export const getUserData = () => {
+  return async () => {
+    try {
+      const response = await instance.get("/user/me");
+      console.log(response);
+      dispatch(userdata.actions.getUserData(response.data.data.user));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};

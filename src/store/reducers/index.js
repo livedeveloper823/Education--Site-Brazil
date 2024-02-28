@@ -1,0 +1,26 @@
+// third-party
+import { combineReducers } from 'redux';
+
+// project import
+import menu from './menu';
+import snackbar from './snackbar';
+import questiondata from './questiondata';
+import schooldata from './schooldata';
+import subjectsdata from './subjectsdata';
+import userdata from './userdata'
+import rankingdata from './rankingdata';
+import notificationdata from './notificationdata';
+// ==============================|| COMBINE REDUCERS ||============================== //
+
+const reducers = combineReducers({
+  menu,
+  snackbar,
+  questiondata,
+  schooldata,
+  subjectsdata,
+  userdata,
+  rankingdata,
+  notificationdata,
+});
+
+export default reducers;

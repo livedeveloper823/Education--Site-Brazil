@@ -1,0 +1,48 @@
+const CourseData = [
+    {
+        title:"Portugese",
+        summary:"Portugese"
+    },
+    {
+        title:"Portugese",
+        summary:"Portugese"
+    },
+    {
+        title:"Portugese",
+        summary:"Portugese"
+    },
+    {
+        title:"Portugese",
+        summary:"Portugese"
+    },
+    {
+        title:"Portugese",
+        summary:"Portugese"
+    },
+    {
+        title:"Portugese",
+        summary:"Portugese"
+    },
+    {
+        title:"Portugese",
+        summary:"Portugese"
+    },
+    {
+        title:"Portugese",
+        summary:"Portugese"
+    },
+    {
+        title:"Portugese",
+        summary:"Portugese"
+    },
+    {
+        title:"Portugese",
+        summary:"Portugese"
+    },
+    {
+        title:"Portugese",
+        summary:"Portugese"
+    }
+]
+
+export default CourseData;
