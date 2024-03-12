@@ -3,8 +3,8 @@ import { Chart } from "react-google-charts";
 
 const data = [
   ["Task", "Hours per Day"],
-  ["Work", 11],
-  ["Eat", 2],
+  ["Certo", 11],
+  ["Errado", 2],
 ];
 const options = {
   title: "Meta Mensal",
