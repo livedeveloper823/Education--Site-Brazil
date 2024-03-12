@@ -17,7 +17,6 @@ import App from "./App";
 import { store } from "./store";
 // import store from "./store/store";
 
-// import { configProvider } from 'contexts/ConfigContext';
 import reportWebVitals from "./reportWebVitals";
 
 const container = document.getElementById("root");

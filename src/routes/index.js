@@ -12,6 +12,7 @@ import Verification from './Verifyemail';
 // ==============================|| ROUTING RENDER ||============================== //
 
 export default function ThemeRoutes() {
+
   return useRoutes([LoginRoute,RegisterRoute,ForgotRoute, MainRoutes, AdminRoutes,Verification, SuccessRoute]);
   
 }

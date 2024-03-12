@@ -18,7 +18,7 @@ const Dashboard = () => {
             </div>
           </div>
           <ChartWeek />
-          <div className="md:flex md:gap-10 md:mt-20 mt-5 md:text-2xl px-5 md:px-10 md:py-20 bg-white">
+          <div className="md:flex md:gap-10 bg-white md:mt-20 mt-5 md:text-xl px-5 md:px-10 md:py-12 rounded-xl">
             <div>Total Question Num: 23</div>
             <div>Answer Num: 23</div>
           </div>
@@ -36,7 +36,7 @@ const Dashboard = () => {
             </div>
           </div>
           <ChartMonth />
-          <div className="md:flex md:gap-10 md:mt-20 md:text-2xl md:px-10 md:py-20 bg-white">
+          <div className="md:flex md:gap-10 bg-white md:mt-20 md:text-xl md:px-10 md:py-12 rounded-xl">
             <div>Total Question Num: 23</div>
             <div>Answer Num: 23</div> 
           </div>
