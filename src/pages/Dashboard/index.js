@@ -1,7 +1,36 @@
+import Chart from "react-google-charts";
 import ChartMonth from "../../components/Student/ChartMonth";
 import ChartWeek from "../../components/Student/ChartWeek";
 import CastConnectedOutlinedIcon from "@mui/icons-material/CastConnectedOutlined";
 import WatchOutlinedIcon from "@mui/icons-material/WatchOutlined";
+
+export const data = [
+  ["City", "Successful Rate"],
+  [`Math ${59}%`, 59],
+  [`Portugese ${13}%`, 13],
+];
+
+export const options = {
+  title: "Correct answers",
+  chartArea: { width: "70%" },
+  hAxis: {
+    title: "Total Population",
+    minValue: 0,
+    textPosition: 'none',
+    viewWindow: {
+      min: 0,
+      max: 100
+  },
+  },
+  vAxis: {
+    title: "Subjects",
+  },
+  colors:['#22ff69', '#552277'],
+  titleTextStyle: {
+    // i.e. 'Times New Roman'
+    fontSize: 18,
+  },
+};
 
 const Dashboard = () => {
   return (
@@ -13,15 +42,11 @@ const Dashboard = () => {
               <CastConnectedOutlinedIcon className="text-sky-800" />
             </div>
             <div>
-              <div>Jogos finalizados pelos alunas</div>
+              <div>Jogos finalizados pelos alunos</div>
               <div>1 Jogos</div>
             </div>
           </div>
           <ChartWeek />
-          <div className="md:flex md:gap-10 bg-white md:mt-20 mt-5 md:text-xl px-5 md:px-10 md:py-12 rounded-xl">
-            <div>Total Question Num: 23</div>
-            <div>Answer Num: 23</div>
-          </div>
         </div>
         <div className="mt-10 md:mt-0">
           <div>
@@ -30,17 +55,22 @@ const Dashboard = () => {
                 <WatchOutlinedIcon className="text-sky-800" />
               </div>
               <div>
-                <div>Jogos finalizados pelos alunas</div>
+                <div>Jogos finalizados pelos alunos</div>
                 <div>1 Jogos</div>
               </div>
             </div>
           </div>
           <ChartMonth />
-          <div className="md:flex md:gap-10 bg-white md:mt-20 md:text-xl md:px-10 md:py-12 rounded-xl">
-            <div>Total Question Num: 23</div>
-            <div>Answer Num: 23</div> 
-          </div>
         </div>
+      </div>
+      <div>
+        <Chart
+          chartType="BarChart"
+          width="100%"
+          height="200px"
+          data={data}
+          options={options}
+        />
       </div>
     </div>
   );
