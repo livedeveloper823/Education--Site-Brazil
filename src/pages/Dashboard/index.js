@@ -5,16 +5,16 @@ import CastConnectedOutlinedIcon from "@mui/icons-material/CastConnectedOutlined
 import WatchOutlinedIcon from "@mui/icons-material/WatchOutlined";
 
 export const data = [
-  ["City", "Successful Rate"],
-  [`Math ${59}%`, 59],
-  [`Portugese ${13}%`, 13],
+  ["City", "Taxa de sucesso"],
+  [`Matemática ${59}%`, 59],
+  [`Português ${13}%`, 13],
 ];
 
 export const options = {
-  title: "Correct answers",
+  title: "Respostas corretas",
   chartArea: { width: "70%" },
   hAxis: {
-    title: "Total Population",
+    title: "Taxa de sucesso",
     minValue: 0,
     textPosition: 'none',
     viewWindow: {
@@ -23,12 +23,12 @@ export const options = {
   },
   },
   vAxis: {
-    title: "Subjects",
+    title: "Assuntos",
   },
   colors:['#22ff69', '#552277'],
   titleTextStyle: {
     // i.e. 'Times New Roman'
-    fontSize: 18,
+    fontSize: 24,
   },
 };
 
