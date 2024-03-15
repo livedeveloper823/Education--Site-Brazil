@@ -31,7 +31,10 @@ export const options = {
     fontSize: 24,
   },
 };
-
+const date = new Date();
+const month = date.getMonth()
+const day = date.getDate()
+const year = date.getFullYear()
 const Dashboard = () => {
   return (
     <div className="md:m-20 m-4">
@@ -56,7 +59,7 @@ const Dashboard = () => {
               </div>
               <div>
                 <div>Jogos finalizados pelos alunos</div>
-                <div>1 Jogos</div>
+                <div>{year}.{month}.{day}</div>
               </div>
             </div>
           </div>
