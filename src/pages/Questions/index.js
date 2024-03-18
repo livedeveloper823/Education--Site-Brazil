@@ -1,5 +1,5 @@
-import Question from "../../components/Student/Questions";
 import React, { useState, useEffect } from "react";
+import Question from "../../components/Student/Questions";
 import { useDispatch, useSelector } from "../../store/index";
 import { getSubjects } from "../../store/reducers/subjectsdata";
 import { getStudentQuery } from "../../store/reducers/questiondata";

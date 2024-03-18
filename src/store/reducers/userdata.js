@@ -5,7 +5,7 @@ import { dispatch } from "../index";
 const initialState = {
   users: [],
   admin: [],
-  loading: false,
+  isLogin: false,
 };
 
 const userdata = createSlice({
@@ -14,9 +14,11 @@ const userdata = createSlice({
   reducers: {
     getAdminData: (state, action) => {
       state.admin = action.payload;
+      state.isLogin = true;
     },
     getUserData :(state, action) =>{
       state.users = action.payload;
+      state.isLogin = true;
     }
   },
 });

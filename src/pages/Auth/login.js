@@ -18,6 +18,7 @@ const Login = () => {
         if (res.status === 200) {
           const user = res.data.data.user;
           localStorage.setItem("token", res.data.data.token);
+          localStorage.setItem("isLogin", true);
           localStorage.setItem("userrole", user.role)
           user.role === "student" ? navigate("/student") : navigate("/admin");
         }

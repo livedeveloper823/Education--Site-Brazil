@@ -12,6 +12,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useDispatch, useSelector } from "../store";
 import { getAdminData, getUserData } from "../store/reducers/userdata";
+import { useNavigate } from "react-router-dom";
 
 const DropDownMenu = () => {
   const [open, setOpen] = useState(false);
@@ -112,6 +113,13 @@ const Header = () => {
   const userRole = localStorage.getItem("userrole");
   const [open, setOpen] = useState(false);
 
+  const navigate = useNavigate();
+  
+  const handlesignout = () => {
+    localStorage.clear();
+    navigate("/");
+  }
+
   return (
     <div className="bg-white flex md:justify-end justify-between items-center md:gap-[20px] px-10 max-[1280px]:pr-10 py-4 max-[1280px]:py-2">
       <div className="md:invisible">
@@ -147,14 +155,13 @@ const Header = () => {
                   <SettingsIcon className="text-2xl mr-2 my-1" />
                   Configurações
                 </a>
-                <a
+                <div
                   className="block hover:bg-gray-400 px-5 my-1 rounded-md"
-                  href="/"
-                  onClick={() => setOpen(!open)}
+                  onClick={handlesignout}
                 >
                   <LogoutIcon className="text-2xl mr-2 my-1" />
                   Sair
-                </a>
+                </div>
               </div>
             )}
           </div>
@@ -201,14 +208,13 @@ const Header = () => {
                   <ShoppingCartIcon className="text-2xl mr-2 my-1" />
                   Suporte
                 </a>
-                <a
+                <div
                   className="block hover:bg-gray-400 px-5 my-1 rounded-md"
-                  href="/"
-                  onClick={() => setOpen(!open)}
+                  onClick={handlesignout}
                 >
                   <LogoutIcon className="text-2xl mr-2 my-1" />
                   Sair
-                </a>
+                </div>
               </div>
             )}
           </div>

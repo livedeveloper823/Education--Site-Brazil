@@ -2,6 +2,7 @@
 import { combineReducers } from 'redux';
 
 // project import
+import auth from './auth';
 import menu from './menu';
 import snackbar from './snackbar';
 import questiondata from './questiondata';
@@ -13,6 +14,7 @@ import notificationdata from './notificationdata';
 // ==============================|| COMBINE REDUCERS ||============================== //
 
 const reducers = combineReducers({
+  auth,
   menu,
   snackbar,
   questiondata,
