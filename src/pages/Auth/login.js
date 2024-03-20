@@ -89,12 +89,11 @@ const Login = () => {
             />
           </label>
           <div className="flex justify-end mt-3">
-            <input
+            <div
               className="cursor-pointer ml-5 font-bold"
               type="submit"
-              value="Esquei minha senha?"
               onClick={handleForgot}
-            />
+            >Esquei minha senha?</div>
           </div>
           <div className="flex justify-center">
             <button
