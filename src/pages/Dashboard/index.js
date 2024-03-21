@@ -31,10 +31,12 @@ export const options = {
     fontSize: 24,
   },
 };
-const date = new Date();
-const month = date.getMonth()
-const day = date.getDate()
-const year = date.getFullYear()
+const days = ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+const longDate = new Date();
+const year = longDate.getFullYear()
+const month = longDate.getMonth()+1
+const day = longDate.getDay()
+const date = longDate.getDate()
 const Dashboard = () => {
   return (
     <div className="md:m-20 m-4">
@@ -59,7 +61,7 @@ const Dashboard = () => {
               </div>
               <div>
                 <div>Jogos finalizados pelos alunos</div>
-                <div>{year}.{month}.{day}</div>
+                <div>{year}.{month}.{date}.{days[day]}</div>
               </div>
             </div>
           </div>

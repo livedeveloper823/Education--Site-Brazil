@@ -4,6 +4,7 @@ import TextEditor from "../../../components/Texteditor";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import FormControl from "@mui/material/FormControl";
+import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import QuestionCard from "../../../components/Questions";
 import { useDispatch, useSelector } from "../../../store/index";
 import { getSubjects } from "../../../store/reducers/subjectsdata";
@@ -16,7 +17,6 @@ const AdminQuestions = () => {
   // import query form database
   const quesdata = useSelector((state) => state.questiondata);
   const QueryData = quesdata.questions;
-  console.log(QueryData);
   // Question schema
   const [questionData, setQuestionData] = useState({
     subject: "",
@@ -24,13 +24,17 @@ const AdminQuestions = () => {
     level: "",
     question: "",
     list: [],
-    multi: "",
+    type: "multiple",
   });
+
+  // console.log("questionData =====> ", questionData);
+
+  const [listItem, setListItem] = useState("");
   // Declare the state variables
   const subjectsData = useSelector((state) => state.subjectsdata);
   const [content, setContent] = useState("");
   const [open, setOpen] = useState(false);
-  const [isSelected, setIsSelceted] = useState("multiple");
+  // const [isSelected, setIsSelceted] = useState("multiple");
   // Import subjects from databzse
   const allSubjects = subjectsData.subjects;
   // Use Dispatch
@@ -38,11 +42,20 @@ const AdminQuestions = () => {
   const dispatch = useDispatch();
   // Declare and definition of function
   const handleChage = (e) => {
-    setIsSelceted(e.target.value);
+    // setIsSelceted(e.target.value);
+    setQuestionData({ ...questionData, type: e.target.value });
   };
   const handleSave = (e) => {
     e.preventDefault();
     dispatch(addQuestions(questionData));
+    setQuestionData({
+      type: "multiple",
+      subject: "",
+      level: "",
+      question: "",
+      answer: "",
+      list: [],
+    });
     handleClose();
   };
   const handleOpen = () => setOpen(true);
@@ -54,9 +67,9 @@ const AdminQuestions = () => {
   }, []);
   const Add = () => {
     const list = questionData.list;
-    list.push(questionData.multi);
+    list.push(listItem);
     setQuestionData({ ...questionData, list: list });
-    setQuestionData({ ...questionData, multi: "" });
+    setListItem("");
   };
   const Delete = (index) => {
     const list = questionData.list;
@@ -66,10 +79,14 @@ const AdminQuestions = () => {
   const Checkbox = () => {
     return questionData.list.map((item, index) => {
       return (
-        <div key={index}>
-          <input type="checkbox" />
-          {item}
-          <button onClick={Delete}>Delete</button>
+        <div key={index} className="flex justify-between">
+          <div className="text-lg">
+            <input type="checkbox" />
+            {item}
+          </div>
+          <button onClick={Delete}>
+            <DeleteForeverOutlinedIcon />
+          </button>
         </div>
       );
     });
@@ -151,6 +168,7 @@ const AdminQuestions = () => {
               level={item.level}
               question={item.question}
               answer={item.answers}
+              list={item.list}
             />
           ))}
       </div>
@@ -184,13 +202,19 @@ const AdminQuestions = () => {
           >
             <TextEditor setContent={setContent} />
           </div>
-          <Checkbox />
+          {questionData.list.length ? (
+            <div>
+              <Checkbox />
+            </div>
+          ) : (
+            <div></div>
+          )}
           <div className="grid grid-cols-2 md:my-5 my-2">
             <label>
               <input
                 type="radio"
                 value="multiple"
-                checked={isSelected === "multiple"}
+                checked={questionData.type === "multiple"}
                 onChange={handleChage}
               />
               Múltiplas Escola
@@ -199,7 +223,7 @@ const AdminQuestions = () => {
               <input
                 type="radio"
                 value="correct"
-                checked={isSelected === "correct"}
+                checked={questionData.type === "correct"}
                 onChange={handleChage}
               />
               Certo ~ errado
@@ -210,19 +234,18 @@ const AdminQuestions = () => {
             <div className="flex justify-between my-1">
               <div className="w-full mr-3">
                 <input
-                  disabled={isSelected === "correct" ? true : false}
+                  disabled={questionData.type === "correct" ? true : false}
                   placeholder="Alternativas"
                   type="text"
                   className="w-full border-2 rounded-lg outline-none md:p-2 p-1"
-                  onChange={(e) =>
-                    setQuestionData({ ...questionData, multi: e.target.value })
-                  }
+                  value={listItem}
+                  onChange={(e) => setListItem(e.target.value)}
                 ></input>
               </div>
               <button
                 onClick={Add}
-                disabled={isSelected === "correct" ? true : false}
-                className="md:px-5 md:py-3 px-2 bg-green-500 hover:bg-green-400 text-white font-bold rounded-md cursor-pointer"
+                disabled={questionData.type === "correct" ? true : false}
+                className="md:px-5 md:py-3 px-2 bg-green-500 hover:bg-green-400 text-white font-bold rounded-md cursor-pointer disabled:bg-gray-400"
               >
                 Adicionar
               </button>

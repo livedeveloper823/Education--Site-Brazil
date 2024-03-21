@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import LogoImg from "../../assets/logo1.png";
 import { useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import useNotification from "../../hooks/useNotification";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
+
+  const { showNotification } = useNotification();
 
   const navigate = useNavigate();
   const handleSubmit = (e) => {
@@ -14,28 +15,40 @@ const Login = () => {
     axios
       .post("/auth/login", loginData)
       .then((res) => {
-        toast.success("LoggedIn Successful");
+        // toast.success("LoggedIn Successful");
+        showNotification("Logined Successful", "success");
         if (res.status === 200) {
           const user = res.data.data.user;
           localStorage.setItem("token", res.data.data.token);
           localStorage.setItem("isLogin", true);
-          localStorage.setItem("userrole", user.role)
+          localStorage.setItem("userrole", user.role);
           user.role === "student" ? navigate("/student") : navigate("/admin");
         }
       })
       .catch((err) => {
-        if (err.response == null) {
-          toast.error("Servidor não encontrado!");
-        } else if (err.response.status === 400) {
-          toast.warning("Usuário não encontrado!");
-        } else if (err.response.status === 401) {
+        const error = err.response
+				console.log(error);
+        if (error == null) {
+          // toast.error("Servidor não encontrado!");
+          showNotification("Servidor não encontrado!", "error");
+        } 
+        // else if (error.status === 400) {
+        //   // toast.warning("Usuário não encontrado!");
+        //   showNotification(error.data.msg, "error");
+        // } 
+        else if (error.status === 401) {
           const email = { email: loginData.email };
           axios.post("/auth/sendcode", email).then((res) => {
             localStorage.setItem("token", res.data.data.token);
           });
-          toast.warning("E-mail não verificado!");
+          // toast.warning("E-mail não verificado!");
+          showNotification("E-mail não verificado!", "warning");
           navigate("/verifyemail");
-        } else toast.error("Solicitação ruim!");
+        } 
+        else {
+          // toast.error("Solicitação ruim!");
+          showNotification(error.data.msg, "error");
+        }
       });
   };
   const handleRegister = () => {
@@ -46,18 +59,6 @@ const Login = () => {
   };
   return (
     <div className="flex justify-center items-center h-screen text-black text-[14px] md:text-md min-[1300px]:text-lg">
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
       <div className="bg-[#ffffff] p-[20px] md:p-[80px] rounded-lg md:w-[35%] min-[1300px]:w-[25%]">
         <div>
           <img src={LogoImg} alt="" />
@@ -89,11 +90,12 @@ const Login = () => {
             />
           </label>
           <div className="flex justify-end mt-3">
-            <div
+            <input
               className="cursor-pointer ml-5 font-bold"
-              type="submit"
+              type="button"
+              value="Esquei minha senha?"
               onClick={handleForgot}
-            >Esquei minha senha?</div>
+            />
           </div>
           <div className="flex justify-center">
             <button
@@ -108,7 +110,7 @@ const Login = () => {
           Não tem conta?
           <input
             className="cursor-pointer ml-5 font-bold"
-            type="submit"
+            type="button"
             value="Cadastre-se"
             onClick={handleRegister}
           />

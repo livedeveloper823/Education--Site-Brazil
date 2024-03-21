@@ -3,13 +3,12 @@ import LogoImg from "../../assets/logo1.png";
 import { useNavigate } from "react-router-dom";
 // import axios from "../../utils/axios";
 import instance from "../../utils/axios";
-import { toast, ToastContainer } from "react-toastify";
+import useNotification from "../../hooks/useNotification";
 import { useDispatch, useSelector } from "../../store/index";
 import { getSchools } from "../../store/reducers/schooldata";
 
-import "react-toastify/dist/ReactToastify.css";
-
 const Register = () => {
+  const { showNotification } = useNotification();
   const data = useSelector((state) => state.schooldata);
   const dispatch = useDispatch();
   const [isSelected, setIsSelceted] = useState("student");
@@ -51,16 +50,23 @@ const Register = () => {
           instance.post("/auth/sendcode", email).then((res) => {
             localStorage.setItem("token", res.data.data.token);
           });
+					showNotification("Register Successful", "success");
           navigate("/verifyemail");
         }
       })
       .catch((err) => {
-        if (err.response == null) {
-          toast.error("Servidor não encontrado!");
-        } else if (err.response.status === 400) {
-          toast.warning("O e-mail já está registrado!");
-        } else {
-          toast.warning("Erro do usuário!");
+        const error = err.response;
+        console.log(error);
+        if (error == null) {
+          // toast.error("Servidor não encontrado!");
+          showNotification("Servidor não encontrado!", "error");
+        }
+        // else if (err.response.status === 400) {
+        //   // toast.warning("O e-mail já está registrado!");
+        // }
+        else {
+          // toast.warning("Erro do usuário!");
+          showNotification(error.data.msg, "warning");
         }
       });
   };
@@ -72,24 +78,14 @@ const Register = () => {
   }, []);
   return (
     <div className="flex justify-center items-center h-screen text-black text-xs md:text-sm min-[1300px]:text-lg">
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
       <div className="bg-[#ffffff] p-[20px] md:p-[80px] mx-10 md:m-0 rounded-lg md:w-[40%] md:py-[50px] min-[1300px]:w-[27%]">
         <div>
           <img src={LogoImg} alt="" />
         </div>
         <form onSubmit={handleSubmit}>
-          <div className="text-center text-lg md:text-[32px] font-bold">Cadastre-se</div>
+          <div className="text-center text-lg md:text-[32px] font-bold">
+            Cadastre-se
+          </div>
           <label className="flex flex-col w-[100%] md:mt-2">
             Nome
             <input

@@ -51,7 +51,8 @@ export function addQuestions(data) {
       dispatch(
         questiondata.actions.addQuestion(response.data.data.newQuestion)
       );
-    } catch (error) {
+    } catch (err) {
+      const error = err.response;
       console.log(error);
     }
   };
@@ -86,6 +87,7 @@ export function addStudentAnswer(data, id) {
   return async () => {
     try {
       const response = await instance.post(`/qa/addans/${id}`, data);
+      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -94,12 +96,11 @@ export function addStudentAnswer(data, id) {
 
 export function trueAnswer(quesId, ansId) {
   return async () => {
-    try{
-      const response = await instance.post(`/qa/trueans/${quesId}/${ansId}`)
+    try {
+      const response = await instance.post(`/qa/trueans/${quesId}/${ansId}`);
       console.log(response);
-    }
-    catch(error){
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
 }

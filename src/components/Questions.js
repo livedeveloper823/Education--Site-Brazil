@@ -3,7 +3,7 @@ import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
+import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import { Modal } from "@mui/material";
 import TextEditor from "./Texteditor";
 import { deleteQuestions, trueAnswer } from "../store/reducers/questiondata";
@@ -26,9 +26,9 @@ const QuestionCard = (props) => {
     return setIsSelected(e.target.value);
   };
   const quesId = props.id;
-  const handleTrue = (quesId, ansId) =>{
+  const handleTrue = (quesId, ansId) => {
     dispatch(trueAnswer(quesId, ansId));
-  }
+  };
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -66,17 +66,30 @@ const QuestionCard = (props) => {
         style={{ display: `${state ? "block" : "none"}` }}
         aria-labelledby="dropdownDefaultButton"
       >
-        <div className="w-full md:gap-2 flex justify-between items-center">
-          <div className="flex items-center md:gap-20">
-            <div className="md:w-full w-20 truncate md:text-left">
+        <div className="md:gap-2 flex justify-between items-center">
+          <div className="flex items-center md:gap-5">
+            <div className="w-20 md:w-36 truncate md:text-left">
               {props.topic}
             </div>
-            {/* <div className="w-[45%] truncate">{props.question}</div> */}
-            <div
-              className="md:w-48 w-20"
-              dangerouslySetInnerHTML={{ __html: props.question }}
-            />
-            <div>{props.list}</div>
+            <div className="truncate">
+              {/* <div> */}
+              <div
+                className="md:w-[800px] w-48 text-ellipsis overflow-hidden"
+                dangerouslySetInnerHTML={{ __html: props.question }}
+              />
+              {/* <div className="md:w-[800px] w-48 text-ellipsis overflow-hidden">
+                {props.question}
+              </div> */}
+              {/* <div>{props.list}</div> */}
+              <div className="flex flex-col w-30">
+                {props.list.map((item, index) => (
+                  <div key={index} className="text-lg">
+                    <input type="checkbox" />
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
           <div className="flex items-center gap-5">
             <div className="cursor-pointer" onClick={handleOpen}>
@@ -87,14 +100,28 @@ const QuestionCard = (props) => {
             </div>
           </div>
         </div>
+        <hr className="text-green-400" />
         {props.answer.map((item) => (
-          <div className="grid grid-cols-4">
-            <div>{item.student.name}</div>
-            <div>{item.answer}</div>
-            <div>{item.answerDate.split("T")[0]}</div>
-            <div>
-              {item.isCorrect === true ? <ThumbUpIcon className="text-green-800"/> : <div onClick={()=>handleTrue(quesId, item._id)}><ThumbDownOutlinedIcon className="text-green-800"/></div>}
+          <div className="">
+            <div className="grid grid-cols-4 items-center text-center">
+              <div>{item.student.name}</div>
+              <div className="flex flex-col text-left">
+                {item.answer.map((item, index) => (
+                  <div key={index}>{item}</div>
+                ))}
+              </div>
+              <div>{item.answerDate.split("T")[0]}</div>
+              <div>
+                {item.isCorrect === true ? (
+                  <ThumbUpIcon className="text-green-800" />
+                ) : (
+                  <div onClick={() => handleTrue(quesId, item._id)}>
+                    <ThumbDownOutlinedIcon className="text-green-800" />
+                  </div>
+                )}
+              </div>
             </div>
+            <hr/>
           </div>
         ))}
       </div>

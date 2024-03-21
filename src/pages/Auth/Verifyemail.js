@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import LogoImg from "../../assets/logo1.png";
 // import { admin, student } from "../../store/reducers/snackbar";
 import { useNavigate } from "react-router-dom";
+import useNotification from "../../hooks/useNotification";
 import axios from "../../utils/axios";
 
 const VerifyEmail = () => {
+  const showNotification = useNotification();
   const [verifyCode, setVerifyCode] = useState({ active: "" });
   const token = localStorage.getItem("token");
   console.log(token);
@@ -19,8 +21,13 @@ const VerifyEmail = () => {
       .post("/auth/verifycode", verifyCode, { headers })
       .then((res) => {
         if (res.status === 200) navigate("/registersuccess");
+        showNotification("Verify Successful", "success");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        const error = err.response
+        console.log(error);
+        showNotification(error.data.msg, "error");
+      });
   };
   return (
     <div className="flex justify-center items-center h-screen text-black md:text-lg text-sm">
