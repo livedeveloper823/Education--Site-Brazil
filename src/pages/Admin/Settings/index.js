@@ -25,7 +25,6 @@ const Settings = () => {
   });
   const allSubject = subjectsData.subjects;
 
-  console.log(allSubject);
   const dispatch = useDispatch();
   const addSchool = (e) => {
     e.preventDefault();

@@ -6,7 +6,6 @@ const ForgotPassword = () => {
     const navigate = useNavigate()
     const [newpass, setNewpass] = useState("")
     const [confirmpass, setConfirmpass] = useState("")
-    console.log(newpass, confirmpass);
     const handleSubmit = (e) => {
         e.preventDefault()
         if(newpass === confirmpass){

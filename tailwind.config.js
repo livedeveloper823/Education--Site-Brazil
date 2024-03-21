@@ -10,6 +10,12 @@ module.exports = {
         },
       },
     },
+    colors:{
+      current: 'currentColor',
+      'white':'#ffffff',
+      'basicColor':'#2C4D3C',
+      'hoverColor':'#458d68',
+    }
   },
   plugins: [
     require('tailwind-scrollbar-hide')

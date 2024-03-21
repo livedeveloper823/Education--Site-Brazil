@@ -11,7 +11,6 @@ const Ranking = () => {
   const RankData = useSelector((state) => state.rankingdata);
   const schoolRank = RankData.schoolRankings;
   const studentRank = RankData.studentRankings;
-  console.log(studentRank);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getStudentRank());

@@ -10,8 +10,6 @@ const Question = (props) => {
   const [answerData, setAnswerData] = useState({
     answer: [],
   });
-  // console.log(answerData);
-  // console.log(props.answer);
   const dispatch = useDispatch();
   const [state, setState] = useState(false);
   const quesDate = props.date.split("T")[0];

@@ -5,7 +5,6 @@ import { changeAdminData, getAdminData } from "../store/reducers/userdata";
 const AdminProfile = () => {
   const userdata = useSelector((state) => state.userdata);
   const admin = userdata.admin;
-  console.log("admin", admin);
   const dispatch = useDispatch();
 
   const [newAdminData, setNewAdminData] = useState({
@@ -18,7 +17,6 @@ const AdminProfile = () => {
     newPassword2: "",
   });
 
-  // console.log("newAdminData", newAdminData);
 
   const [active, setActive] = useState("edit");
 

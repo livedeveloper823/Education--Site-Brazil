@@ -40,7 +40,6 @@ export const changeAdminData = (data) => {
   return async () => {
     try {
       const response = await instance.put("/user/updateadmin", data);
-      // console.log(response);
       dispatch(userdata.actions.getAdminData(response.data.data.admin));
     } catch (error) {
       console.log(error);
@@ -53,7 +52,6 @@ export const getUserData = () => {
   return async () => {
     try {
       const response = await instance.get("/user/me");
-      console.log(response);
       dispatch(userdata.actions.getUserData(response.data.data.user));
     } catch (error) {
       console.log(error);

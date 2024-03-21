@@ -26,9 +26,6 @@ const AdminQuestions = () => {
     list: [],
     type: "multiple",
   });
-
-  // console.log("questionData =====> ", questionData);
-
   const [listItem, setListItem] = useState("");
   // Declare the state variables
   const subjectsData = useSelector((state) => state.subjectsdata);
@@ -38,7 +35,6 @@ const AdminQuestions = () => {
   // Import subjects from databzse
   const allSubjects = subjectsData.subjects;
   // Use Dispatch
-  // console.log(quesdata);
   const dispatch = useDispatch();
   // Declare and definition of function
   const handleChage = (e) => {

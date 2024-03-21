@@ -38,11 +38,11 @@ const QuestionCard = (props) => {
   }, []);
 
   return (
-    <div className="md:mx-20 mx-3">
+    <div className="md:mx-20 mx-3 text-white">
       <button
         id="dropdownDefaultButton"
         data-dropdown-toggle="dropdown"
-        className="w-full flex items-center justify-between gap-10 bg-green-400 my-3 md:px-10 px-4 md:py-4 py-2 rounded-xl md:text-lg text-sm"
+        className="w-full flex items-center justify-between gap-10 bg-basicColor my-3 md:px-10 px-4 md:py-4 py-2 rounded-xl md:text-lg text-sm"
         type="button"
         onClick={() => setState(!state)}
       >

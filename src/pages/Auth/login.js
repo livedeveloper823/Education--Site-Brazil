@@ -27,7 +27,6 @@ const Login = () => {
       })
       .catch((err) => {
         const error = err.response
-				console.log(error);
         if (error == null) {
           // toast.error("Servidor não encontrado!");
           showNotification("Servidor não encontrado!", "error");
@@ -100,7 +99,7 @@ const Login = () => {
           <div className="flex justify-center">
             <button
               type="submit"
-              className="items-center px-10 py-2 bg-green-600 cursor-pointer hover:bg-green-500 text-[20px] text-white text-center md:mt-5 mt-2 rounded-md"
+              className="items-center px-10 py-2 bg-basicColor cursor-pointer hover:bg-hoverColor text-[20px] text-white text-center md:mt-5 mt-2 rounded-md"
             >
               Entrar
             </button>

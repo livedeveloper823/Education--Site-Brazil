@@ -1,15 +1,16 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { Chart } from "react-google-charts";
 import { useSelector, useDispatch } from "../../store/index";
 import { getStudentRank } from "../../store/reducers/rankingdata";
 
-export default function ChartMonth() {
+export default function ChartMonth(props) {
   const RankData = useSelector((state) => state.rankingdata);
   const dispatch = useDispatch();
+  const correctAnswers = props.monthCorrect;
   const data = [
     ["Task", "Hours per Day"],
-    ["Certo", 20],
-    ["Errado", 200],
+    ["Certo", correctAnswers],
+    ["Errado", 200 - correctAnswers],
     // ["Certo", RankData.studentRankings.portRank.score + RankData.studentRankings.mathRank.score],
     // ["Errado", 200 -RankData.studentRankings.portRank.score - RankData.studentRankings.mathRank.score],
   ];

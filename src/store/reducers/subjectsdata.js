@@ -48,7 +48,6 @@ export function addTopic(id, data) {
   return async () => {
     try {
       const response = await instance.post(`/subject/addtopic/${id}`, data);
-      console.log(response);
       dispatch(subjectdata.actions.getAllSubjects(response.data.data.subjects));
     } catch (error) {
       console.log(error);

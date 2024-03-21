@@ -9,8 +9,7 @@ const VerifyEmail = () => {
   const showNotification = useNotification();
   const [verifyCode, setVerifyCode] = useState({ active: "" });
   const token = localStorage.getItem("token");
-  console.log(token);
-  console.log(verifyCode);
+
   const headers = {
     Authorization: token,
   };
@@ -25,7 +24,6 @@ const VerifyEmail = () => {
       })
       .catch((err) => {
         const error = err.response
-        console.log(error);
         showNotification(error.data.msg, "error");
       });
   };

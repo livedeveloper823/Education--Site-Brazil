@@ -3,16 +3,14 @@ import { Chart } from "react-google-charts";
 import { useSelector, useDispatch } from "../../store/index";
 import { getStudentRank } from "../../store/reducers/rankingdata";
 
-export default function ChartWeek() {
+export default function ChartDay(props) {
   const RankData = useSelector((state) => state.rankingdata);
   const dispatch = useDispatch();
-  console.log(RankData);
+  const correctAnswers = props.dailyCorrect;
   const data = [
     ["Task", "Hours per Day"],
-    ["Certo", 5],
-    ["Errado", 10],
-    // ["Certo", RankData.studentRankings.mathRank.score],
-    // ["Errado", 10 - RankData.studentRankings.mathRank.score],
+    ["Certo", correctAnswers],
+    ["Errado", 10 - correctAnswers],
   ];
   const options = {
     title: "Meta diária",

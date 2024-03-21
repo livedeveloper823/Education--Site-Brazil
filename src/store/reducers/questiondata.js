@@ -87,7 +87,6 @@ export function addStudentAnswer(data, id) {
   return async () => {
     try {
       const response = await instance.post(`/qa/addans/${id}`, data);
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -98,7 +97,6 @@ export function trueAnswer(quesId, ansId) {
   return async () => {
     try {
       const response = await instance.post(`/qa/trueans/${quesId}/${ansId}`);
-      console.log(response);
     } catch (error) {
       console.log(error);
     }

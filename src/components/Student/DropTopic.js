@@ -8,7 +8,6 @@ const DropTopic = (props) => {
   const dispatch = useDispatch();
   const [state, setState] = useState(false);
   const [topic, setTopic] = useState({ topic: "" });
-  console.log(topic);
   const handleTopic = (e) => {
     e.preventDefault();
     dispatch(addTopic(id, topic));

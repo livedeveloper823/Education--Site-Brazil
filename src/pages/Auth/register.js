@@ -38,10 +38,8 @@ const Register = () => {
   };
   const navigate = useNavigate();
   const allSchool = data.schools;
-  console.log(userData);
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(userData);
     instance
       .post("/auth/register", userData)
       .then((res) => {
@@ -56,7 +54,6 @@ const Register = () => {
       })
       .catch((err) => {
         const error = err.response;
-        console.log(error);
         if (error == null) {
           // toast.error("Servidor não encontrado!");
           showNotification("Servidor não encontrado!", "error");

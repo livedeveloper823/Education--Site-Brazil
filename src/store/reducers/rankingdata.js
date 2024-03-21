@@ -27,7 +27,6 @@ export function getSchoolRank() {
   return async () => {
     try {
       const response = await instance.get("/rank/schoolrank");
-      console.log(response);
       dispatch(rankingdata.actions.getSchoolRankings(response.data.data));
     } catch (error) {
       console.error(error);
@@ -39,7 +38,6 @@ export function getStudentRank() {
   return async () => {
     try {
       const response = await instance.get("/rank/studentrank");
-      console.log(response);
       dispatch(rankingdata.actions.getStudentRankings(response.data.data));
     } catch (error) {
       console.error(error);

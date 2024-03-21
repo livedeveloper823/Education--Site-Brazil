@@ -29,7 +29,6 @@ export function getNotifications() {
   return async () => {
     try {
       const response = await instance.get("/notify/allnotifys");
-      console.log(response);
       dispatch(
         notificationdata.actions.getAllNotifications(
           response.data.data.allNotifys
