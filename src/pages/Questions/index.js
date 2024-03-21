@@ -10,13 +10,14 @@ const Questions = () => {
   const handleClick = (e) => {
     setIsSubject(e.target.value);
   };
-  console.log(isSubject);
+  // console.log(isSubject);
   const quesData = useSelector((state) => state.questiondata);
   const subjectsData = useSelector((state) => state.subjectsdata);
   const allSubject = subjectsData.subjects;
   const dispatch = useDispatch();
 
   const QueryData = quesData.questions;
+  // console.log(QueryData)
   useEffect(() => {
     dispatch(getStudentQuery());
     dispatch(getSubjects());
@@ -76,6 +77,8 @@ const Questions = () => {
                 question={item.question.question}
                 level={item.question.level}
                 answer={item.stuAnswer}
+                type={item.question.type}
+                list={item.question.list}
               />
             );
           })}
