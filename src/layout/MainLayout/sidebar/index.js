@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import Logo from "./Logo";
+import Logo from "../../../components/Logo";
 import Menu from "./menu-item";
 
 const Sidebar = () => {

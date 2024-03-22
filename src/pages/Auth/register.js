@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import LogoImg from "../../assets/logo1.png";
 import { useNavigate } from "react-router-dom";
 // import axios from "../../utils/axios";
 import instance from "../../utils/axios";
 import useNotification from "../../hooks/useNotification";
 import { useDispatch, useSelector } from "../../store/index";
 import { getSchools } from "../../store/reducers/schooldata";
+import AuthLogo from "../../components/AuthLogo";
 
 const Register = () => {
   const { showNotification } = useNotification();
@@ -59,7 +59,6 @@ const Register = () => {
           showNotification("Servidor não encontrado!", "error");
         }
         // else if (err.response.status === 400) {
-        //   // toast.warning("O e-mail já está registrado!");
         // }
         else {
           // toast.warning("Erro do usuário!");
@@ -77,7 +76,7 @@ const Register = () => {
     <div className="flex justify-center items-center h-screen text-black text-xs md:text-sm min-[1300px]:text-lg">
       <div className="bg-[#ffffff] p-[20px] md:p-[80px] mx-10 md:m-0 rounded-lg md:w-[40%] md:py-[50px] min-[1300px]:w-[27%]">
         <div>
-          <img src={LogoImg} alt="" />
+          <AuthLogo />
         </div>
         <form onSubmit={handleSubmit}>
           <div className="text-center text-lg md:text-[32px] font-bold">

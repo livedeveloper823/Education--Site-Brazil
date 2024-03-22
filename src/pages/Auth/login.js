@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import LogoImg from "../../assets/logo1.png";
 import { useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
 import useNotification from "../../hooks/useNotification";
+import AuthLogo from "../../components/AuthLogo";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
@@ -32,7 +32,6 @@ const Login = () => {
           showNotification("Servidor não encontrado!", "error");
         } 
         // else if (error.status === 400) {
-        //   // toast.warning("Usuário não encontrado!");
         //   showNotification(error.data.msg, "error");
         // } 
         else if (error.status === 401) {
@@ -60,7 +59,7 @@ const Login = () => {
     <div className="flex justify-center items-center h-screen text-black text-[14px] md:text-md min-[1300px]:text-lg">
       <div className="bg-[#ffffff] p-[20px] md:p-[80px] rounded-lg md:w-[35%] min-[1300px]:w-[25%]">
         <div>
-          <img src={LogoImg} alt="" />
+          <AuthLogo/>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="text-center text-[32px]">Entre na sua conta</div>

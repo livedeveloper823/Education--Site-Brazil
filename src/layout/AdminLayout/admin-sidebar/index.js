@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import Logo from "./Logo";
+import Logo from "../../../components/Logo";
 import AdminMenu from "./admin-menu";
 
 const AdminSidebar = (props) => {
