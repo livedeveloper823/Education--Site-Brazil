@@ -9,8 +9,8 @@ export default function ChartDay(props) {
   const correctAnswers = props.dailyCorrect;
   const data = [
     ["Task", "Hours per Day"],
-    ["Certo", correctAnswers],
-    ["Errado", 10 - correctAnswers],
+    [`Certo(${correctAnswers})`, correctAnswers],
+    [`Total(10)`, 10 - correctAnswers],
   ];
   const options = {
     title: "Meta diária",
@@ -31,6 +31,7 @@ export default function ChartDay(props) {
         fontSize: 24, // or the number you want
       },
     },
+    sliceVisibilityThreshold:0
   };
   useEffect(() => {
     dispatch(getStudentRank());

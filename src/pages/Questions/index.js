@@ -33,7 +33,7 @@ const Questions = () => {
           <hr className="md:mb-10" />
           {allSubject.map((item) => (
             <button
-              className="flex flex-cols px-4 py-3 text-gray-600 hover:text-black text-center"
+              className="flex flex-cols px-4 py-3 text-gray-700 hover:text-[#000000] text-center"
               onClick={handleClick}
               value={item.subjectName}
             >
@@ -42,7 +42,7 @@ const Questions = () => {
           ))}
         </div>
         <div className="md:invisible">
-          <div className="mx-4 md:m-0 text-center bg-green-400 p-2 rounded-lg">
+          <div className="mx-4 md:m-0 text-center bg-hoverColor p-2 rounded-lg">
             <button
               className="w-full rounded-lg font-bold"
               onClick={() => setOpen(!open)}
@@ -53,7 +53,7 @@ const Questions = () => {
           {open &&
             allSubject.map((item) => (
               <button
-                className="flex flex-cols p-2 mx-5 text-gray-600 hover:text-black"
+                className="flex flex-cols p-2 mx-5 text-basicColor hover:text-gray-700"
                 onClick={handleClick}
                 value={item.subjectName}
               >

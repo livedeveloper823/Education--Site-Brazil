@@ -228,7 +228,9 @@ p {
       background-color: #1eb2a6;
     }
   }
-
+input{
+  border-color: #d1d5db;
+}
 input:focus{
   border-color: #86efac;
 }

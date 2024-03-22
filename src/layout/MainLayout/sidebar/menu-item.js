@@ -18,9 +18,9 @@ const menuItem = [
 ];
 
 const CommonStyle =
-  "max-[1280px]:mx-3 mx-5 rounded-lg flex justify-between hover:text-[#ffffff] hover:bg-green-600 py-1 hover:font-bold cursor-pointer";
+  "max-[1280px]:mx-3 mx-5 rounded-lg flex justify-between hover:text-[#ffffff] hover:bg-basicColor py-1 hover:font-bold cursor-pointer";
 const ItemSelectStyle1 =
-  "flex items-center max-[1280px]:py-2 py-3 text-[#ffffff] bg-green-600 w-[100%] font-bold rounded-lg px-3";
+  "flex items-center max-[1280px]:py-2 py-3 text-[#ffffff] bg-basicColor w-[100%] font-bold rounded-lg px-3";
 const ItemNormalStyle1 = "flex items-center max-[1280px]:py-1 py-2 px-3";
 const ItemSelectStyle2 = "ml-3 text-[#ffffff]";
 const ItemNormalStyle2 = "ml-3";

@@ -17,7 +17,7 @@ const Ranking = () => {
     dispatch(getSchoolRank());
   }, []);
   return (
-    <div className="md:m-20 md:p-10 pt-10 bg-white border-2 rounded ">
+    <div className="md:m-20 md:p-10 pt-10 bg-white rounded-xl">
       <Tabs>
         <div label="Escolas">
           <div className="md:grid grid-cols-3 gap-20 md:m-20">

@@ -13,11 +13,11 @@ const Support = () => {
           <label className="md:grid gird-cols w-[100%]">
             Mensagem <br/>
             <textarea
-              className=" w-[100%] h-36 outline-none p-3 border-2 rounded-lg mt-5"
+              className=" w-[100%] h-36 outline-none p-3 border-2 border-gray-300 rounded-lg mt-5"
               placeholder="Escreva sua mensagem aqui!..."
             />
           </label>
-          <button className="w-[100%] bg-green-600 hover:bg-green-500 text-white md:text-xl rounded-lg md:py-3 py-2 mt-5">
+          <button className="w-[100%] bg-basicColor hover:bg-hoverColor text-white md:text-xl rounded-lg md:py-3 py-2 mt-5">
             Enviar
           </button>
         </form>

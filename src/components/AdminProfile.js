@@ -155,7 +155,7 @@ const AdminProfile = () => {
             </div>
             <button
               type="submit"
-              className="w-full md:w-48 bg-green-500 md:px-10 py-2 md:py-3 text-white rounded-lg"
+              className="w-full md:w-48 bg-basicColor hover:bg-hoverColor md:px-10 py-2 md:py-3 text-white rounded-lg"
             >
               Salvar{" "}
             </button>
@@ -173,7 +173,7 @@ const AdminProfile = () => {
             <div className="status">{admin.email}</div>
             <button
               type="submit"
-              className="w-full md:w-48 bg-green-500 md:px-10 py-2 md:py-3 text-white rounded-lg"
+              className="w-full md:w-48 bg-basicColor hover:bg-hoverColor md:px-10 py-2 md:py-3 text-white rounded-lg"
             >
               Editar perfil{" "}
             </button>

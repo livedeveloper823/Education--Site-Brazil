@@ -89,7 +89,6 @@ const AdminQuestions = () => {
   };
   const [subjectKey, setSubjectKey] = useState("");
   const [levelKey, setLevelKey] = useState("");
-
   return (
     <div>
       <div className="md:my-10 md:mx-20 mx-10 my-5 md:text-3xl font-bold">
@@ -99,7 +98,7 @@ const AdminQuestions = () => {
         <div className="md:flex gap-10">
           <FormControl className="w-full md:w-36" color="success">
             <Select
-              className="bg-green-600 hover:bg-green-500 text-center mb-2 md:m-0 outline-none"
+              className="bg-basicColor hover:bg-hoverColor text-center mb-2 md:m-0 outline-none"
               value={subjectKey}
               onChange={(e) => setSubjectKey(e.target.value)}
               sx={{
@@ -119,7 +118,7 @@ const AdminQuestions = () => {
           </FormControl>
           <FormControl color="success" className="w-full md:w-36">
             <Select
-              className="bg-green-600 hover:bg-green-500 text-center"
+              className="bg-basicColor hover:bg-hoverColor text-center"
               value={levelKey}
               onChange={(e) => setLevelKey(e.target.value)}
               sx={{
@@ -139,7 +138,7 @@ const AdminQuestions = () => {
           </FormControl>
         </div>
         <div
-          className="md:w-48 bg-green-600 hover:bg-green-500 text-white text-center rounded-lg md:py-3 py-4 md:m-0 mt-2 cursor-pointer md:text-[20px]"
+          className="md:w-48 bg-basicColor hover:bg-hoverColor text-white text-center rounded-lg md:py-3 py-4 md:m-0 mt-2 cursor-pointer md:text-[20px]"
           onClick={handleOpen}
         >
           Adicionar
@@ -241,7 +240,7 @@ const AdminQuestions = () => {
               <button
                 onClick={Add}
                 disabled={questionData.type === "correct" ? true : false}
-                className="md:px-5 md:py-3 px-2 bg-green-500 hover:bg-green-400 text-white font-bold rounded-md cursor-pointer disabled:bg-gray-400"
+                className="md:px-5 md:py-3 px-2 bg-basicColor hover:bg-hoverColor text-white font-bold rounded-md cursor-pointer disabled:bg-gray-400"
               >
                 Adicionar
               </button>
@@ -320,13 +319,13 @@ const AdminQuestions = () => {
           <hr />
           <div className="flex justify-end text-center gap-3 md:mt-5 mt-2 mx-10">
             <div
-              className="bg-gray-300 md:w-[25%] md:p-2 p-1 text-gray-700 font-bold rounded cursor-pointer hover:bg-green-400 hover:text-white"
+              className="bg-gray-300 md:w-[25%] md:p-2 p-1 text-gray-700 font-bold rounded cursor-pointer hover:bg-hoverColor hover:text-white"
               onClick={handleClose}
             >
               Fechar
             </div>
             <div
-              className="bg-green-500 md:w-[25%] md:p-2 p-1 text-white font-bold rounded cursor-pointer hover:bg-green-400"
+              className="bg-basicColor md:w-[25%] md:p-2 p-1 text-white font-bold rounded cursor-pointer hover:bg-hoverColor"
               onClick={handleSave}
             >
               Salvar

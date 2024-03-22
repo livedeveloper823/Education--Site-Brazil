@@ -25,7 +25,7 @@ const DropTopic = (props) => {
       <button
         id="dropdownDefaultButton"
         data-dropdown-toggle="dropdown"
-        className="w-full flex items-center justify-between gap-10 bg-green-400 my-3 md:px-10 px-4 md:py-4 py-2 rounded-xl md:text-lg"
+        className="w-full flex items-center justify-between gap-10 bg-hoverColor my-3 md:px-10 px-4 md:py-4 py-2 rounded-xl md:text-lg"
         type="button"
         onClick={() => setState(!state)}
       >
@@ -51,7 +51,7 @@ const DropTopic = (props) => {
               onChange={(e) => setTopic({ topic: e.target.value })}
             />
             <button
-              className="w-18 bg-green-500 hover:bg-green-400 text-white px-3 py-1 border-2 border-green-500 rounded-r-full"
+              className="w-18 bg-basicColor hover:bg-hoverColor text-white px-3 py-1 border-2 border-basicColor rounded-r-full"
               onClick={handleTopic}
             >
               Adicionar

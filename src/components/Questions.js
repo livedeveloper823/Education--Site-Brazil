@@ -12,6 +12,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { useDispatch, useSelector } from "../store/index";
 import { getSubjects } from "../store/reducers/subjectsdata";
 import { getQuestions } from "../store/reducers/questiondata";
+import { PropaneRounded } from "@mui/icons-material";
 
 const QuestionCard = (props) => {
   const subjectsData = useSelector((state) => state.subjectsdata);
@@ -36,7 +37,7 @@ const QuestionCard = (props) => {
     dispatch(getQuestions());
     dispatch(getSubjects());
   }, []);
-
+ console.log(props.answer);
   return (
     <div className="md:mx-20 mx-3 text-white">
       <button
@@ -51,7 +52,7 @@ const QuestionCard = (props) => {
           <div className="md:w-24 font-bold">{props.subject}</div>
         </div>
         <div className="flex md:gap-10 gap-3 items-center">
-          <div className=" md:w-full w-10 text-gray-500">
+          <div className=" md:w-full w-10 text-basicColor">
             {props.date.split("T")[0]}
           </div>
           <div>{props.level}</div>
@@ -66,7 +67,7 @@ const QuestionCard = (props) => {
         style={{ display: `${state ? "block" : "none"}` }}
         aria-labelledby="dropdownDefaultButton"
       >
-        <div className="md:gap-2 flex justify-between items-center">
+        <div className="md:gap-2 flex justify-between items-center text-gray-700">
           <div className="flex items-center md:gap-5">
             <div className="w-20 md:w-36 truncate md:text-left">
               {props.topic}
@@ -100,11 +101,11 @@ const QuestionCard = (props) => {
             </div>
           </div>
         </div>
-        <hr className="text-green-400" />
+        <hr className="text-hoverColor" />
         {props.answer.map((item) => (
           <div className="">
-            <div className="grid grid-cols-4 items-center text-center">
-              <div>{item.student.name}</div>
+            <div className="grid grid-cols-4 items-center text-center text-gray-700">
+              {/* <div>{item.student.name}</div> */}
               <div className="flex flex-col text-left">
                 {item.answer.map((item, index) => (
                   <div key={index}>{item}</div>
@@ -188,7 +189,7 @@ const QuestionCard = (props) => {
               </div>
               <button
                 disabled={isSelected === "correct" ? true : false}
-                className="md:px-5 md:py-3 px-2 bg-green-500 hover:bg-green-400 text-white font-bold rounded-md cursor-pointer"
+                className="md:px-5 md:py-3 px-2 bg-basicColor hover:hoverColor text-white font-bold rounded-md cursor-pointer"
               >
                 Adicionar
               </button>
@@ -266,12 +267,12 @@ const QuestionCard = (props) => {
           <hr />
           <div className="flex justify-end text-center gap-3 md:mt-5 mt-2 mx-10">
             <div
-              className="bg-gray-300 md:w-[25%] md:p-2 p-1 text-gray-700 font-bold rounded cursor-pointer hover:bg-green-400 hover:text-white"
+              className="bg-gray-300 md:w-[25%] md:p-2 p-1 text-gray-700 font-bold rounded cursor-pointer hover:hoverColor hover:text-white"
               onClick={handleClose}
             >
               Fechar
             </div>
-            <div className="bg-green-500 md:w-[25%] md:p-2 p-1 text-white font-bold rounded cursor-pointer hover:bg-green-400">
+            <div className="bg-basicColor md:w-[25%] md:p-2 p-1 text-white font-bold rounded cursor-pointer hover:hoverColor">
               Salvar
             </div>
           </div>

@@ -49,7 +49,7 @@ const Settings = () => {
       <div className="md:my-10 md:mx-20 mx-5 my-3 md:text-3xl font-bold">
         Configurações
       </div>
-      <div className="md:mx-20 mx-3 md:p-10 p-4 bg-white border-2 rounded-2xl">
+      <div className="md:mx-20 mx-3 md:p-10 p-4 bg-white rounded-2xl">
         <Tabs>
           <div label="Perfil">
             <div className="flex justify-center m-10">
@@ -60,14 +60,14 @@ const Settings = () => {
           <div label="Escolas">
             <div className="flex justify-end md:mt-20 my-2">
               <div
-                className="w-full md:w-36 md:mx-20 bg-green-600 px-6 py-3 md:rounded-2xl rounded-lg text-white text-center font-bold cursor-pointer"
+                className="w-full md:w-36 md:mx-20 bg-basicColor px-6 py-3 md:rounded-2xl rounded-lg text-white text-center font-bold cursor-pointer"
                 onClick={handleOpen}
               >
                 Adicionar
               </div>
             </div>
-            <div className="md:px-20 h-96 overflow-y-scroll scrollbar-hide">
-              <div className="flex gap-1 md:rounded-2xl rounded-lg bg-green-500 px-5 py-3 my-2 md:text-[22px] text-sm font-bold">
+            <div className="md:px-20 h-96 overflow-y-scroll scrollbar-hide text-white">
+              <div className="flex gap-1 md:rounded-2xl rounded-lg bg-basicColor px-5 py-3 my-2 md:text-[22px] text-sm font-bold">
                 <div className="md:w-[10%]">No</div>
                 <div className="md:w-[30%] w-16 truncate">Nome da escola</div>
                 <div className="md:w-[60%] truncate">Descrição</div>
@@ -106,7 +106,7 @@ const Settings = () => {
                   Adicionar
                 </div> */}
               </div>
-              <div className="flex md:gap-10 gap-3 font-bold bg-green-500 md:px-10 px-4 md:py-4 py-3 md:m-5 my-2 md:rounded-xl rounded-lg">
+              <div className="flex md:gap-10 gap-3 text-white font-bold bg-basicColor md:px-10 px-4 md:py-4 py-3 md:m-5 my-2 md:rounded-xl rounded-lg">
                 <div>No</div>
                 <div>Assuntos</div>
                 <div>Tópicos...</div>
@@ -174,13 +174,13 @@ const Settings = () => {
             <hr />
             <div className="flex md:justify-end justify-center text-center gap-3 md:mt-10 mt-3 md:mx-20">
               <div
-                className="bg-gray-300 md:p-2 p-1 text-gray-700 font-bold rounded cursor-pointer hover:bg-green-400 hover:text-white"
+                className="bg-gray-300 md:p-2 p-1 text-gray-700 font-bold rounded cursor-pointer hover:bg-hoverColor hover:text-white"
                 onClick={handleClose}
               >
                 Fechar
               </div>
               <div
-                className="bg-green-500 md:p-2 p-1 text-white font-bold rounded cursor-pointer hover:bg-green-400"
+                className="bg-basicColor md:p-2 p-1 text-white font-bold rounded cursor-pointer hover:bg-hoverColor"
                 onClick={addSchool}
               >
                 Adicionar

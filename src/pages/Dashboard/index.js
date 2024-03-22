@@ -4,10 +4,8 @@ import CastConnectedOutlinedIcon from "@mui/icons-material/CastConnectedOutlined
 import WatchOutlinedIcon from "@mui/icons-material/WatchOutlined";
 import { useDispatch, useSelector } from "../../store/index";
 import { getUserData } from "../../store/reducers/userdata";
-import { getStudentQuery } from "../../store/reducers/questiondata";
 import { useEffect } from "react";
 import ChartDay from "../../components/Student/ChartWeek";
-
 
 export const options = {
   title: "Respostas corretas",
@@ -45,6 +43,8 @@ const year = longDate.getFullYear();
 const month = longDate.getMonth() + 1;
 const day = longDate.getDay();
 const date = longDate.getDate();
+let portAnswersNum;
+let mathAnswersNum;
 let dailyMathCorrection;
 let dailyPortCorrection;
 let totalMathCorrection;
@@ -52,49 +52,69 @@ let totalPortCorrection;
 
 //Main function
 const Dashboard = () => {
-
   //Chart Data
   const data = [
     ["City", "Taxa de sucesso"],
-    [`Matemática ${totalMathCorrection/2}%`, totalMathCorrection],
-    [`Português ${totalPortCorrection/2}%`, totalPortCorrection],
+    [`Matemática ${totalMathCorrection / mathAnswersNum * 100}%`, totalMathCorrection],
+    [`Português ${totalPortCorrection / portAnswersNum * 100}%`, totalPortCorrection],
   ];
 
   //Import Data from Database via redux
   const userdata = useSelector((state) => state.userdata);
-  const quesData = useSelector(state => state.questiondata)
-  console.log("quesdata", quesData);
   // correctQuestion numbers
-  const correctQues = userdata.users.correctQuestions
+  const correctQues = userdata.users.userAnswers;
   if (correctQues) {
-    const correctMathQuestions = correctQues[0].questions
-    for (let i = 0; i < correctMathQuestions.length; i++) {
-      const element = correctMathQuestions[i];
-      const mathDate = new Date(element.date)
-      const mathDateYear = mathDate.getFullYear()
-      const mathDateMonth = mathDate.getMonth() + 1
-      const mathDateDate = mathDate.getDate()
-      dailyMathCorrection = correctMathQuestions.filter(() => month == mathDateMonth && year == mathDateYear && date == mathDateDate)
-      totalMathCorrection = correctMathQuestions.filter(() => month == mathDateMonth && year == mathDateYear).length
-    }
-    const correctPortQuestions = correctQues[1].questions
-    for (let i = 0; i < correctPortQuestions.length; i++) {
-      const element = correctPortQuestions[i];
-      const portDate = new Date(element.date)
-      const portDateYear = portDate.getFullYear()
-      const portDateMonth = portDate.getMonth() + 1
-      const portDateDate = portDate.getDate()
-      dailyPortCorrection = correctMathQuestions.filter(() => month == portDateMonth && year == portDateYear && date == portDateDate)
-      totalPortCorrection = correctPortQuestions.filter(() => month == portDateMonth && year == portDateYear).length
+    for (let i = 0; i < correctQues.length; i++) {
+      const subject = correctQues[i].subject.subjectName;
+      if (subject === "Matemática") {
+        const mathAnswers = correctQues[i].answerQuestions;
+        mathAnswersNum = mathAnswers.length
+        for (let j = 0; j < mathAnswers.length; j++) {
+          const mathAnswer = mathAnswers[j];
+          const mathDate = new Date(mathAnswer.date);
+          const mathDateYear = mathDate.getFullYear();
+          const mathDateMonth = mathDate.getMonth() + 1;
+          const mathDateDate = mathDate.getDate();
+          const correctMathQuestions = correctQues[i].correctQuestions;
+          dailyMathCorrection = correctMathQuestions.filter(
+            () =>
+              month == mathDateMonth &&
+              year == mathDateYear &&
+              date == mathDateDate
+          ).length;
+          totalMathCorrection = correctMathQuestions.filter(
+            () => month == mathDateMonth && year == mathDateYear
+          ).length;
+        }
+      } else {
+        const portAnswers = correctQues[i].answerQuestions;
+        portAnswersNum = portAnswers.length
+        for (let j = 0; j < portAnswers.length; j++) {
+          const portAnswer = portAnswers[j];
+          const portDate = new Date(portAnswer.date);
+          const portDateYear = portDate.getFullYear();
+          const portDateMonth = portDate.getMonth() + 1;
+          const portDateDate = portDate.getDate();
+          const correctPortQuestions = correctQues[i].correctQuestions;
+          dailyPortCorrection = correctPortQuestions.filter(
+            () =>
+              month == portDateMonth &&
+              year == portDateYear &&
+              date == portDateDate
+          );
+          totalPortCorrection = correctPortQuestions.filter(
+            () => month == portDateMonth && year == portDateYear
+          ).length;
+        }
+      }
     }
   }
   let totalCorrection = totalMathCorrection + totalPortCorrection;
-  let dailyCorrection = dailyMathCorrection + dailyPortCorrection; 
-  
+  let dailyCorrection = dailyMathCorrection + dailyPortCorrection;
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getUserData());
-    dispatch(getStudentQuery());
   }, []);
   return (
     <div className="md:m-10 m-4">
@@ -109,7 +129,7 @@ const Dashboard = () => {
               <div>1 Jogos</div>
             </div>
           </div>
-          <ChartDay dailyCorrect = {dailyCorrection}/>
+          <ChartDay dailyCorrect={dailyCorrection} />
         </div>
         <div className="mt-10 md:mt-0">
           <div>

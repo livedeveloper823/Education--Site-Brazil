@@ -34,7 +34,7 @@ const Notifications = () => {
       </div>
       <div className="md:flex justify-end md:mr-[200px] md:mt-4 my-2">
         <div
-          className="bg-green-600 text-white text-center rounded md:py-2 md:px-5 xp-2 py-1 cursor-pointer"
+          className="bg-basicColor text-white text-center rounded md:py-2 md:px-5 xp-2 py-1 cursor-pointer"
           onClick={handleOpen}
         >
           Adicionar
@@ -75,18 +75,18 @@ const Notifications = () => {
           </label>
           <textarea
             name="textarea"
-            className="border-2 md:mx-10 outline-none md:h-36 md:p-5 p-2 rounded-lg"
+            className="border-2 md:mx-10 outline-none md:h-36 md:p-5 p-2 rounded-lg border-gray-300"
             onChange={(e) => setNotificationData({ content: e.target.value })}
           ></textarea>
           <div className="flex justify-end md:mx-10 text-center gap-3 md:text-lg text-sm md:mt-10 mt-5">
             <div
-              className="bg-gray-400 md:p-3 py-1 px-2 text-white font-bold rounded cursor-pointer hover:bg-green-400"
+              className="bg-basicColor md:p-3 py-1 px-2 text-white font-bold rounded cursor-pointer hover:bg-hoverColor"
               onClick={handleClose}
             >
               Fechar
             </div>
             <div
-              className="bg-green-500 md:p-3 py-1 px-2 text-white font-bold rounded cursor-pointer hover:bg-green-400"
+              className="bg-basicColor md:p-3 py-1 px-2 text-white font-bold rounded cursor-pointer hover:bg-hoverColor"
               onClick={handleSubmit}
             >
               Adicionar

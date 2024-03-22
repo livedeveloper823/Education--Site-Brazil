@@ -41,7 +41,7 @@ const Question = (props) => {
       <button
         id="dropdownDefaultButton"
         data-dropdown-toggle="dropdown"
-        className="w-full flex items-center justify-between gap-10 bg-green-400 my-3 md:px-10 px-4 md:py-4 py-2 md:rounded-xl rounded-lg md:text-lg text-sm"
+        className="w-full flex items-center justify-between gap-10 bg-hoverColor text-white my-3 md:px-10 px-4 md:py-4 py-2 md:rounded-xl rounded-lg md:text-lg text-sm"
         type="button"
         onClick={() => setState(!state)}
       >
@@ -119,7 +119,7 @@ const Question = (props) => {
               <div className="md:none flex gap-2 items-end md:text-lg text-sm">
                 <button
                   type="submit"
-                  className="bg-green-600 hover:bg-green-500 rounded-md text-white md:px-4 md:py-2 px-2 py-1 border-2 border-green-600"
+                  className="bg-basicColor hover:bg-hoverColor rounded-md text-white md:px-4 md:py-2 px-2 py-1 border-2 border-green-600"
                 >
                   Submit
                 </button>

@@ -9,10 +9,8 @@ export default function ChartMonth(props) {
   const correctAnswers = props.monthCorrect;
   const data = [
     ["Task", "Hours per Day"],
-    ["Certo", correctAnswers],
-    ["Errado", 200 - correctAnswers],
-    // ["Certo", RankData.studentRankings.portRank.score + RankData.studentRankings.mathRank.score],
-    // ["Errado", 200 -RankData.studentRankings.portRank.score - RankData.studentRankings.mathRank.score],
+    [`Certo(${correctAnswers})`, correctAnswers],
+    [`Total(200)`, 200 - correctAnswers],
   ];
   const options = {
     title: "Meta Mensal",
@@ -33,6 +31,7 @@ export default function ChartMonth(props) {
         fontSize: 24, // or the number you want
       },
     },
+    sliceVisibilityThreshold:0
   };
   useEffect(() => {
     dispatch(getStudentRank());
