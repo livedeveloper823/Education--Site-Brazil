@@ -6,7 +6,7 @@ const AuthLogo = () => {
             <img src={LogoImg} alt="" className="w-24"/>
             <div className="text-center">
                 <p className="uppercase text-gray-700 text-3xl font-bold">Simplifica</p>
-                <p className="uppercase text-hoverColor text-3xl font-bold">Concursos</p>
+                <p className="uppercase text-[#C8986B] text-3xl font-bold">EDUCAÇÃO</p>
             </div>
         </div>
     )

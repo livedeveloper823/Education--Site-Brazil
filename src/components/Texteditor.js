@@ -98,7 +98,7 @@ const TextEditor = (props) => {
     <div>
       <div>
         <ReactQuill
-          className="overflow-auto md:overflow-scroll border-2 min-[1280px]:h-64"
+          className="overflow-auto md:overflow-scroll min-[1280px]:h-64"
           theme="snow"
           modules={modules}
           formats={formats}

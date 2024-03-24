@@ -231,6 +231,13 @@ p {
 input{
   border-color: #d1d5db;
 }
+select{
+  border-color: #d1d5db;
+}
+hr{
+  border-color: #d1d5db;
+}
+
 input:focus{
   border-color: #86efac;
 }

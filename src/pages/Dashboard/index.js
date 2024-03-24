@@ -2,32 +2,11 @@ import Chart from "react-google-charts";
 import ChartMonth from "../../components/Student/ChartMonth";
 import CastConnectedOutlinedIcon from "@mui/icons-material/CastConnectedOutlined";
 import WatchOutlinedIcon from "@mui/icons-material/WatchOutlined";
-import { useDispatch, useSelector } from "../../store/index";
-import { getUserData } from "../../store/reducers/userdata";
-import { useEffect } from "react";
+import { useSelector } from "../../store/index";
 import ChartDay from "../../components/Student/ChartWeek";
+import useTime from "../../hooks/useTimer";
+import { TimeProvider } from "../../contexts/timeContext";
 
-export const options = {
-  title: "Respostas corretas",
-  chartArea: { width: "70%" },
-  hAxis: {
-    title: "Taxa de sucesso",
-    minValue: 0,
-    textPosition: "none",
-    viewWindow: {
-      min: 0,
-      max: 100,
-    },
-  },
-  vAxis: {
-    title: "Assuntos",
-  },
-  colors: ["#22ff69", "#552277"],
-  titleTextStyle: {
-    // i.e. 'Times New Roman'
-    fontSize: 24,
-  },
-};
 const days = [
   "Sunday",
   "Monday",
@@ -43,81 +22,155 @@ const year = longDate.getFullYear();
 const month = longDate.getMonth() + 1;
 const day = longDate.getDay();
 const date = longDate.getDate();
-let portAnswersNum;
-let mathAnswersNum;
-let dailyMathCorrection;
-let dailyPortCorrection;
-let totalMathCorrection;
-let totalPortCorrection;
+let portAnswersNum = 0;
+let mathAnswersNum = 0;
+let dailyMathCorrection = 0;
+let dailyPortCorrection = 0;
+let totalMathCorrection = 0;
+let totalPortCorrection = 0;
 
 //Main function
 const Dashboard = () => {
-  //Chart Data
-  const data = [
-    ["City", "Taxa de sucesso"],
-    [`Matemática ${totalMathCorrection / mathAnswersNum * 100}%`, totalMathCorrection],
-    [`Português ${totalPortCorrection / portAnswersNum * 100}%`, totalPortCorrection],
-  ];
+  const CurrentTime = () => {
+    const currentTime = useTime();
 
+    return <div>Current Time: {currentTime.toLocaleTimeString()}</div>;
+  };
   //Import Data from Database via redux
   const userdata = useSelector((state) => state.userdata);
   // correctQuestion numbers
   const correctQues = userdata.users.userAnswers;
   if (correctQues) {
-    for (let i = 0; i < correctQues.length; i++) {
-      const subject = correctQues[i].subject.subjectName;
-      if (subject === "Matemática") {
-        const mathAnswers = correctQues[i].answerQuestions;
-        mathAnswersNum = mathAnswers.length
-        for (let j = 0; j < mathAnswers.length; j++) {
-          const mathAnswer = mathAnswers[j];
-          const mathDate = new Date(mathAnswer.date);
+    correctQues
+      .filter((item) => item.subject.subjectName == "Matemática")
+      .map((item) => {
+        const totalMathQues = item.answerQuestions;
+        const correctMathQues = item.correctQuestions;
+        totalMathQues.map((item) => {
+          const mathDate = new Date(item.date);
+          const mathDateYear = mathDate.getFullYear();
+          const mathDateMonth = mathDate.getMonth() + 1;
+          // const mathDateDate = mathDate.getDate();
+          if (month == mathDateMonth && year == mathDateYear) {
+            mathAnswersNum++;
+          }
+        });
+        correctMathQues.map((item) => {
+          const mathDate = new Date(item.date);
           const mathDateYear = mathDate.getFullYear();
           const mathDateMonth = mathDate.getMonth() + 1;
           const mathDateDate = mathDate.getDate();
-          const correctMathQuestions = correctQues[i].correctQuestions;
-          dailyMathCorrection = correctMathQuestions.filter(
-            () =>
-              month == mathDateMonth &&
-              year == mathDateYear &&
-              date == mathDateDate
-          ).length;
-          totalMathCorrection = correctMathQuestions.filter(
-            () => month == mathDateMonth && year == mathDateYear
-          ).length;
-        }
-      } else {
-        const portAnswers = correctQues[i].answerQuestions;
-        portAnswersNum = portAnswers.length
-        for (let j = 0; j < portAnswers.length; j++) {
-          const portAnswer = portAnswers[j];
-          const portDate = new Date(portAnswer.date);
+          if (
+            month == mathDateMonth &&
+            year == mathDateYear &&
+            date == mathDateDate
+          ) {
+            dailyMathCorrection++;
+          }
+          if (month == mathDateMonth && year == mathDateYear) {
+            totalMathCorrection++;
+          }
+        });
+      });
+
+    correctQues
+      .filter((item) => item.subject.subjectName == "Português")
+      .map((item) => {
+        const correctPortQues = item.correctQuestions;
+        const totalPortQues = item.answerQuestions;
+        totalPortQues.map((item) => {
+          const portDate = new Date(item.date);
+          const portDateYear = portDate.getFullYear();
+          const portDateMonth = portDate.getMonth() + 1;
+          // const portDateDate = portDate.getDate();
+          if (month === portDateMonth && year === portDateYear)
+            portAnswersNum = portAnswersNum + 1;
+        });
+        correctPortQues.map((item) => {
+          const portDate = new Date(item.date);
           const portDateYear = portDate.getFullYear();
           const portDateMonth = portDate.getMonth() + 1;
           const portDateDate = portDate.getDate();
-          const correctPortQuestions = correctQues[i].correctQuestions;
-          dailyPortCorrection = correctPortQuestions.filter(
-            () =>
-              month == portDateMonth &&
-              year == portDateYear &&
-              date == portDateDate
-          );
-          totalPortCorrection = correctPortQuestions.filter(
-            () => month == portDateMonth && year == portDateYear
-          ).length;
-        }
-      }
-    }
+          if (
+            month === portDateMonth &&
+            year === portDateYear &&
+            date === portDateDate
+          )
+            dailyPortCorrection = dailyPortCorrection + 1;
+          if (month == portDateMonth && year == portDateYear) {
+            totalPortCorrection = totalPortCorrection + 1;
+          }
+          console.log(dailyPortCorrection, totalPortCorrection);
+        });
+      });
   }
   let totalCorrection = totalMathCorrection + totalPortCorrection;
-  let dailyCorrection = dailyMathCorrection + dailyPortCorrection;
+  let dailyCorrection = dailyPortCorrection + dailyMathCorrection;
+  let portSuccess = 0;  
+  if (portAnswersNum != 0) {
+    portSuccess = (totalPortCorrection / portAnswersNum) * 100;
+  }
+  let mathSuccess = 0;
+  if (mathAnswersNum != 0){
+    mathSuccess = (totalMathCorrection / mathAnswersNum) * 100;
+  }
+  //Chart Data
+  const portData = [
+    ["City", "Taxa de sucesso"],
+    [`Português ${mathSuccess.toFixed(2)}%`, totalPortCorrection],
+  ];
+  const mathData = [
+    ["City1", "Texa de sucesso"],
+    [`Matemática ${portSuccess.toFixed(2)}%`, totalMathCorrection],
+  ];
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getUserData());
-  }, []);
+  const portOptions = {
+    title: "Respostas corretas",
+    chartArea: { width: "70%" },
+    hAxis: {
+      title: "Taxa de sucesso",
+      minValue: 0,
+      textPosition: "none",
+      viewWindow: {
+        min: 0,
+        max: portAnswersNum,
+      },
+    },
+    // vAxis: {
+    //   title: "Assuntos",
+    // },
+    colors: ["#22ff69"],
+    titleTextStyle: {
+      // i.e. 'Times New Roman'
+      fontSize: 24,
+    },
+  };
+  const mathOptions = {
+    title: "Respostas corretas",
+    chartArea: { width: "70%" },
+    hAxis: {
+      title: "Taxa de sucesso",
+      minValue: 0,
+      textPosition: "none",
+      viewWindow: {
+        min: 0,
+        max: mathAnswersNum,
+      },
+    },
+    // vAxis: {
+    //   title: "Assuntos",
+    // },
+    colors: ["#22ff69"],
+    titleTextStyle: {
+      // i.e. 'Times New Roman'
+      fontSize: 24,
+    },
+  };
   return (
     <div className="md:m-10 m-4">
+      <TimeProvider>
+        <CurrentTime />
+      </TimeProvider>
       <div className="md:grid grid-cols-2 md:gap-20 mb-10">
         <div>
           <div className="flex bg-white items-center px-10 py-5 gap-10 mb-5 rounded-xl">
@@ -152,9 +205,16 @@ const Dashboard = () => {
         <Chart
           chartType="BarChart"
           width="100%"
-          height="200px"
-          data={data}
-          options={options}
+          height="100px"
+          data={portData}
+          options={portOptions}
+        />
+        <Chart
+          chartType="BarChart"
+          width="100%"
+          height="100px"
+          data={mathData}
+          options={mathOptions}
         />
       </div>
     </div>

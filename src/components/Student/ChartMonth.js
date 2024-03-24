@@ -9,7 +9,7 @@ export default function ChartMonth(props) {
   const correctAnswers = props.monthCorrect;
   const data = [
     ["Task", "Hours per Day"],
-    [`Certo(${correctAnswers})`, correctAnswers],
+    [`Jogos feito(${correctAnswers})`, correctAnswers],
     [`Total(200)`, 200 - correctAnswers],
   ];
   const options = {
@@ -19,7 +19,7 @@ export default function ChartMonth(props) {
     colors: ["rgb(34, 197, 64)", "#feda32"],
     legend: {
       textStyle: {
-        fontSize: 26,
+        fontSize: 18,
       },
     },
     titleTextStyle: {

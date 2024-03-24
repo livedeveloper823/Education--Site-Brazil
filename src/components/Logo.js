@@ -6,7 +6,7 @@ const Logo = () => {
             <img src={LogoImg} alt="" className="w-24"/>
             <div className="text-center">
                 <p className="uppercase text-white text-3xl font-bold">Simplifica</p>
-                <p className="uppercase text-basicColor text-2xl font-bold">Concursos</p>
+                <p className="uppercase text-[#C8986B] text-2xl font-bold">EDUCAÇÃO</p>
             </div>
         </div>
     )

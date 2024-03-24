@@ -17,14 +17,11 @@ import { useNavigate } from "react-router-dom";
 const DropDownMenu = () => {
   const [open, setOpen] = useState(false);
   const userRole = localStorage.getItem("userrole");
-  const dispatch = useDispatch();
   const userdata = useSelector((state) => state.userdata);
   const student = userdata.users;
   const admin = userdata.admin;
   const container = useRef(null);
-  useEffect(() => {
-    userRole === "admin" ? dispatch(getAdminData()) : dispatch(getUserData());
-  }, []);
+  
   return (
     <div ref={container}>
       <button onClick={() => setOpen(!open)}>

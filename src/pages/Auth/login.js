@@ -3,19 +3,19 @@ import { useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
 import useNotification from "../../hooks/useNotification";
 import AuthLogo from "../../components/AuthLogo";
+import { useDispatch } from "../../store";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
 
   const { showNotification } = useNotification();
-
+  
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
       .post("/auth/login", loginData)
       .then((res) => {
-        // toast.success("LoggedIn Successful");
         showNotification("Logined Successful", "success");
         if (res.status === 200) {
           const user = res.data.data.user;
@@ -23,17 +23,21 @@ const Login = () => {
           localStorage.setItem("isLogin", true);
           localStorage.setItem("userrole", user.role);
           user.role === "student" ? navigate("/student") : navigate("/admin");
+          const dispatch = useDispatch();
+          useEffect(() => {
+            userRole === "admin" ? dispatch(getAdminData()) : dispatch(getUserData());
+          }, []);
         }
       })
       .catch((err) => {
-        const error = err.response
+        const error = err.response;
         if (error == null) {
           // toast.error("Servidor não encontrado!");
           showNotification("Servidor não encontrado!", "error");
-        } 
+        }
         // else if (error.status === 400) {
         //   showNotification(error.data.msg, "error");
-        // } 
+        // }
         else if (error.status === 401) {
           const email = { email: loginData.email };
           axios.post("/auth/sendcode", email).then((res) => {
@@ -42,8 +46,7 @@ const Login = () => {
           // toast.warning("E-mail não verificado!");
           showNotification("E-mail não verificado!", "warning");
           navigate("/verifyemail");
-        } 
-        else {
+        } else {
           // toast.error("Solicitação ruim!");
           showNotification(error.data.msg, "error");
         }
@@ -59,7 +62,7 @@ const Login = () => {
     <div className="flex justify-center items-center h-screen text-black text-[14px] md:text-md min-[1300px]:text-lg">
       <div className="bg-[#ffffff] p-[20px] md:p-[80px] rounded-lg md:w-[35%] min-[1300px]:w-[25%]">
         <div>
-          <AuthLogo/>
+          <AuthLogo />
         </div>
         <form onSubmit={handleSubmit}>
           <div className="text-center text-[32px]">Entre na sua conta</div>

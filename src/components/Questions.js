@@ -9,14 +9,9 @@ import TextEditor from "./Texteditor";
 import { deleteQuestions, trueAnswer } from "../store/reducers/questiondata";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { useDispatch, useSelector } from "../store/index";
-import { getSubjects } from "../store/reducers/subjectsdata";
-import { getQuestions } from "../store/reducers/questiondata";
-import { PropaneRounded } from "@mui/icons-material";
+import { useDispatch } from "../store/index";
 
 const QuestionCard = (props) => {
-  const subjectsData = useSelector((state) => state.subjectsdata);
-  const allSubjects = subjectsData.subjects;
   const [state, setState] = useState(false);
   const dispatch = useDispatch();
   const handleDelete = () => {
@@ -33,11 +28,8 @@ const QuestionCard = (props) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  useEffect(() => {
-    dispatch(getQuestions());
-    dispatch(getSubjects());
-  }, []);
- console.log(props.answer);
+
+  {props.answer.map(item=>item.student && console.log(item.student.name))}
   return (
     <div className="md:mx-20 mx-3 text-white">
       <button
@@ -73,21 +65,16 @@ const QuestionCard = (props) => {
               {props.topic}
             </div>
             <div className="truncate">
-              {/* <div> */}
               <div
                 className="md:w-[800px] w-48 text-ellipsis overflow-hidden"
                 dangerouslySetInnerHTML={{ __html: props.question }}
               />
-              {/* <div className="md:w-[800px] w-48 text-ellipsis overflow-hidden">
-                {props.question}
-              </div> */}
-              {/* <div>{props.list}</div> */}
               <div className="flex flex-col w-30">
                 {props.list.map((item, index) => (
-                  <div key={index} className="text-lg">
+                  <label key={index} className="text-lg">
                     <input type="checkbox" />
                     {item}
-                  </div>
+                  </label>
                 ))}
               </div>
             </div>
@@ -102,10 +89,10 @@ const QuestionCard = (props) => {
           </div>
         </div>
         <hr className="text-hoverColor" />
-        {props.answer.map((item) => (
+         {props.answer.map((item) => (
           <div className="">
             <div className="grid grid-cols-4 items-center text-center text-gray-700">
-              {/* <div>{item.student.name}</div> */}
+              {item.student && <div key={item._id}>{item.student.name}</div>}
               <div className="flex flex-col text-left">
                 {item.answer.map((item, index) => (
                   <div key={index}>{item}</div>
@@ -122,7 +109,7 @@ const QuestionCard = (props) => {
                 )}
               </div>
             </div>
-            <hr/>
+            <hr />
           </div>
         ))}
       </div>
@@ -147,13 +134,7 @@ const QuestionCard = (props) => {
           </div>
           <hr />
           <div className="md:py-2 py-1">Questão</div>
-          <div
-            className="h-auto text-center"
-            // onMouseOut={() =>
-            // setContent={setContent}
-            //   setQuestionData({ ...questionData, question: content })
-            // }
-          >
+          <div className="h-auto text-center">
             <TextEditor />
           </div>
           <div className="grid grid-cols-2 md:my-5 my-2">
@@ -202,9 +183,6 @@ const QuestionCard = (props) => {
                 <select
                   className="w-full outline-none border-2 md:py-2 rounded"
                   key="level"
-                  // onChange={(e) =>
-                  //   setQuestionData({ ...questionData, level: e.target.value })
-                  // }
                 >
                   <option disabled selected={props.level}>
                     Selecione
@@ -221,20 +199,13 @@ const QuestionCard = (props) => {
                 <select
                   className="w-full outline-none border-2 md:py-2 rounded"
                   key="subject"
-                  // onChange={(e) =>
-                  //   setQuestionData({ ...questionData, topic: e.target.value })
-                  // }
                 >
                   <option disabled value={props.topic}>
                     Selecione
                   </option>
-                  {allSubjects
-                    // .filter((item) => item.subjectName === questionData.subject)
-                    .map((item) =>
-                      item.topic.map((topic) => (
-                        <option value={topic}>{topic}</option>
-                      ))
-                    )}
+                  {props.topics.map((item) =>
+                    item.map((topic) => <option value={topic}>{topic}</option>)
+                  )}
                 </select>
               </label>
             </div>
@@ -243,21 +214,14 @@ const QuestionCard = (props) => {
                 Diciplina
                 <select
                   className="w-full outline-none border-2 md:py-2 rounded"
-                  // onChange={(e) =>
-                  //   setQuestionData({
-                  //     ...questionData,
-                  //     subject: e.target.value,
-                  //   })
-                  // }
-                  // onChange={(e) => setSelectSubject(e.target.value)}
                   defaultValue="Selecione"
                 >
                   <option disabled value={props.subject}>
                     Selecione
                   </option>
-                  {allSubjects.map((item) => (
-                    <option key={item._id} value={item.subjectName}>
-                      {item.subjectName}
+                  {props.subjectNames.map((item, index) => (
+                    <option key={index} value={item}>
+                      {item}
                     </option>
                   ))}
                 </select>

@@ -175,7 +175,7 @@ const Register = () => {
           <div className="flex justify-center">
             <button
               type="submit"
-              className="items-center px-10 py-2 bg-green-600 cursor-pointer hover:bg-green-500 text-md md:text-[20px] text-white text-center mt-3 md:mt-5 rounded-md"
+              className="items-center px-10 py-2 bg-basicColor cursor-pointer hover:bg-hoverColor text-md md:text-[20px] text-white text-center mt-3 md:mt-5 rounded-md"
             >
               Entrar
             </button>

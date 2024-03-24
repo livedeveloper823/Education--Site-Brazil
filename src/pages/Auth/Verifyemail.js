@@ -1,29 +1,26 @@
 import React, { useState } from "react";
-import LogoImg from "../../assets/logo1.png";
-// import { admin, student } from "../../store/reducers/snackbar";
 import { useNavigate } from "react-router-dom";
 import useNotification from "../../hooks/useNotification";
-import axios from "../../utils/axios";
+import { instance } from "../../utils/axios";
+import AuthLogo from "../../components/AuthLogo";
 
 const VerifyEmail = () => {
   const showNotification = useNotification();
   const [verifyCode, setVerifyCode] = useState({ active: "" });
-  const token = localStorage.getItem("token");
-
-  const headers = {
-    Authorization: token,
-  };
+  console.log("verifyCode", verifyCode);
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios
-      .post("/auth/verifycode", verifyCode, { headers })
+    await instance
+      .post("/auth/verifycode", verifyCode)
       .then((res) => {
-        if (res.status === 200) navigate("/registersuccess");
-        showNotification("Verify Successful", "success");
+        console.log("res", res);
+        navigate("/registersuccess");
+        showNotification("Verify Successful!", "success");
       })
       .catch((err) => {
-        const error = err.response
+        const error = err.response;
+        console.log("err",err);
         showNotification(error.data.msg, "error");
       });
   };
@@ -31,7 +28,7 @@ const VerifyEmail = () => {
     <div className="flex justify-center items-center h-screen text-black md:text-lg text-sm">
       <div className="bg-[#ffffff] w-[500px] md:p-[80px] p-5  rounded-lg">
         <div>
-          <img src={LogoImg} alt="" />
+          <AuthLogo />
         </div>
         <div className="text-center text-2xl font-bold md:my-10 my-5">
           Enviamos um código de verificação para seu e-mail.
@@ -47,7 +44,7 @@ const VerifyEmail = () => {
           <div className="flex justify-center">
             <button
               type="submit"
-              className="items-center px-10 py-2 bg-green-600 cursor-pointer hover:bg-green-500 text-[20px] text-white text-center mt-5 rounded-md"
+              className="items-center px-10 py-2 bg-basicColor cursor-pointer hover:bg-hoverColor text-[20px] text-white text-center mt-5 rounded-md"
             >
               Verificar e-mail
             </button>

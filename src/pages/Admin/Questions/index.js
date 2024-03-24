@@ -17,6 +17,7 @@ const AdminQuestions = () => {
   // import query form database
   const quesdata = useSelector((state) => state.questiondata);
   const QueryData = quesdata.questions;
+  console.log(QueryData);
   // Question schema
   const [questionData, setQuestionData] = useState({
     subject: "",
@@ -76,10 +77,10 @@ const AdminQuestions = () => {
     return questionData.list.map((item, index) => {
       return (
         <div key={index} className="flex justify-between">
-          <div className="text-lg">
+          <label className="text-lg">
             <input type="checkbox" />
             {item}
-          </div>
+          </label>
           <button onClick={Delete}>
             <DeleteForeverOutlinedIcon />
           </button>
@@ -144,7 +145,7 @@ const AdminQuestions = () => {
           Adicionar
         </div>
       </div>
-      <div className="h-[60%] overflow-y-scroll scrollbar-hide ">
+      <div className="mx-10 h-[600px] overflow-y-scroll scrollbar-hide">
         {QueryData.filter((item) =>
           item.subject.subjectName
             .toLowerCase()
@@ -164,6 +165,8 @@ const AdminQuestions = () => {
               question={item.question}
               answer={item.answers}
               list={item.list}
+              subjectNames = {allSubjects.map((item)=>item.subjectName)}
+              topics = {allSubjects.map((item)=> item.topic)}
             />
           ))}
       </div>
@@ -188,7 +191,7 @@ const AdminQuestions = () => {
             </div>
           </div>
           <hr />
-          <div className="md:py-2 py-1">Questão</div>
+          <div className="md:py-2 py-1 text-lg">Questão</div>
           <div
             className="h-auto text-center"
             onMouseOut={() =>
