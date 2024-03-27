@@ -19,24 +19,18 @@ const Login = () => {
         showNotification("Logined Successful", "success");
         if (res.status === 200) {
           const user = res.data.data.user;
-          const startTime = new Date();
           localStorage.setItem("token", res.data.data.token);
           localStorage.setItem("isLogin", true);
           localStorage.setItem("userrole", user.role);
-          localStorage.setItem("startTime", startTime);
           user.role === "student" ? navigate("/student") : navigate("/admin");
         }
       })
       .catch((err) => {
         const error = err.response
-        if (error) {
+        if (!error) {
           // toast.error("Servidor não encontrado!");
           showNotification("Servidor não encontrado!", "error");
-        } 
-        // else if (error.status === 400) {
-        //   showNotification(error.data.msg, "error");
-        // } 
-        else if (error.status === 401) {
+        } else if (error.status === 401) {
           const email = { email: loginData.email };
           axios.post("/auth/sendcode", email).then((res) => {
             localStorage.setItem("token", res.data.data.token);

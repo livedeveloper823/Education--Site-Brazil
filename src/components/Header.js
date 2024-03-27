@@ -80,8 +80,8 @@ const DropDownNotify = () => {
           </div>
           {newNotify === true ? (
             <div className="relative flex h-3 w-3">
-              <div className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></div>
-              <div className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></div>
+              <div className="animate-ping absolute inline-flex h-full w-full rounded-full bg-hoverColor opacity-75"></div>
+              <div className="relative inline-flex rounded-full h-3 w-3 bg-basicColor"></div>
             </div>
           ) : (
             ""
@@ -92,7 +92,7 @@ const DropDownNotify = () => {
       </button>
       {open && (
         <div
-          className="absolute w-64 border-2 bg-white right-20 text-center p-5 hover:border-green-500 rounded-lg"
+          className="absolute w-64 border-2 bg-white right-20 text-center p-5 hover:border-hoverColor rounded-lg"
         >
           {notifys.map((item) => (
             <div className="m-2">
@@ -121,23 +121,23 @@ const Header = () => {
     <div className="bg-white flex md:justify-end justify-between items-center md:gap-[20px] px-10 max-[1280px]:pr-10 py-4 max-[1280px]:py-2">
       <div className="md:invisible">
         <button onClick={() => setOpen(!open)}>
-          <div className="w-7 h-1 bg-black m-1"></div>
-          <div className="w-7 h-1 bg-black m-1"></div>
-          <div className="w-7 h-1 bg-black m-1"></div>
+          <div className="w-7 h-1 bg-gray-700 m-1"></div>
+          <div className="w-7 h-1 bg-gray-700 m-1"></div>
+          <div className="w-7 h-1 bg-gray-700 m-1"></div>
         </button>
         {userRole === "admin" ? (
           <div>
             {open && (
               <div className="px-3 py-5 w-full left-0 absolute border-2 bg-[#232323] text-white z-[1] rounded-lg">
                 <a
-                  className="block hover:bg-gray-400 px-5 my-1 rounded-md"
+                  className="block hover:bg-hoverColor px-5 my-1 rounded-md"
                   href="/admin/admin-questions"
                   onClick={() => setOpen(!open)}
                 >
                   <QuizIcon className="text-2xl mr-2 my-1" /> Questões
                 </a>
                 <a
-                  className="block hover:bg-gray-400 px-5 my-1 rounded-md"
+                  className="block hover:bg-hoverColor px-5 my-1 rounded-md"
                   href="/admin/notifications"
                   onClick={() => setOpen(!open)}
                 >
@@ -145,7 +145,7 @@ const Header = () => {
                   Notificações
                 </a>
                 <a
-                  className="block hover:bg-gray-400 px-5 my-1 rounded-md"
+                  className="block hover:bg-hoverColor px-5 my-1 rounded-md"
                   href="/admin/settings"
                   onClick={() => setOpen(!open)}
                 >
@@ -153,7 +153,7 @@ const Header = () => {
                   Configurações
                 </a>
                 <div
-                  className="block hover:bg-gray-400 px-5 my-1 rounded-md"
+                  className="block hover:bg-hoverColor px-5 my-1 rounded-md"
                   onClick={handlesignout}
                 >
                   <LogoutIcon className="text-2xl mr-2 my-1" />
@@ -167,14 +167,14 @@ const Header = () => {
             {open && (
               <div className="px-3 py-5 w-full left-0 absolute border-2 bg-[#232323] text-white z-[1] rounded-lg">
                 <a
-                  className="block hover:bg-gray-400 px-5 my-1 rounded-md"
+                  className="block hover:bg-hoverColor px-5 my-1 rounded-md"
                   href="/student/dashboard"
                   onClick={() => setOpen(!open)}
                 >
                   <HouseIcon className="text-2xl mr-2 my-1" /> Painel
                 </a>
                 <a
-                  className="block hover:bg-gray-400 px-5 my-1 rounded-md"
+                  className="block hover:bg-hoverColor px-5 my-1 rounded-md"
                   href="/student/lessons"
                   onClick={() => setOpen(!open)}
                 >
@@ -182,7 +182,7 @@ const Header = () => {
                   Missões da Escola
                 </a>
                 <a
-                  className="block hover:bg-gray-400 px-5 my-1 rounded-md"
+                  className="block hover:bg-hoverColor px-5 my-1 rounded-md"
                   href="/student/questions"
                   onClick={() => setOpen(!open)}
                 >
@@ -190,7 +190,7 @@ const Header = () => {
                   Explorar jogos
                 </a>
                 <a
-                  className="block hover:bg-gray-400 px-5 my-1 rounded-md"
+                  className="block hover:bg-hoverColor px-5 my-1 rounded-md"
                   href="/student/ranking"
                   onClick={() => setOpen(!open)}
                 >
@@ -198,7 +198,7 @@ const Header = () => {
                   Classificação
                 </a>
                 <a
-                  className="block hover:bg-gray-400 px-5 my-1 rounded-md"
+                  className="block hover:bg-hoverColor px-5 my-1 rounded-md"
                   href="/student/support"
                   onClick={() => setOpen(!open)}
                 >
@@ -206,7 +206,7 @@ const Header = () => {
                   Suporte
                 </a>
                 <div
-                  className="block hover:bg-gray-400 px-5 my-1 rounded-md"
+                  className="block hover:bg-hoverColor px-5 my-1 rounded-md"
                   onClick={handlesignout}
                 >
                   <LogoutIcon className="text-2xl mr-2 my-1" />

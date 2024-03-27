@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import HouseIcon from "@mui/icons-material/House";
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
@@ -6,6 +6,8 @@ import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import Groups3Icon from "@mui/icons-material/Groups3";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LogoutIcon from "@mui/icons-material/Logout";
+import instance from "../../../utils/axios";
+import { useSelector } from "../../../store";
 
 // constant
 const menuItem = [
@@ -24,27 +26,35 @@ const ItemSelectStyle1 =
 const ItemNormalStyle1 = "flex items-center max-[1280px]:py-1 py-2 px-3";
 const ItemSelectStyle2 = "ml-3 text-[#ffffff]";
 const ItemNormalStyle2 = "ml-3";
-// const ItemSelectStyle3 = "w-1 h-9 bg-[#018638] rounded-[25px] block";
-// const ItemNormalStyle3 = "";
 
 const Menu = () => {
   const location = useLocation().pathname;
   const [state, setState] = useState(
     location === "/student" ? "/student/dashboard" : location
   );
-
+  const userData = useSelector((state) => state.userdata);
+  const userEmail = userData.users.email;
   const navigate = useNavigate();
 
   const handlesignout = () => {
-    localStorage.clear();
-    navigate("/");
+    console.log("Clicked");
+    instance
+      .post("/auth/logout", { email: userEmail })
+      .then((res) => {
+        console.log(res);
+        localStorage.clear();
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
     <div className="md:mt-[100px] text-[#ffffff] max-[1280px]:text-sm">
       <div>
-        {menuItem.map((item) => (
-          <a href={item.path}>
+        {menuItem.map((item, index) => (
+          <a href={item.path} key={index}>
             <div className={CommonStyle} style={{ marginBottom: "15px" }}>
               <div
                 className={

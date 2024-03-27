@@ -38,6 +38,7 @@ const Dashboard = () => {
   };
   //Import Data from Database via redux
   const userdata = useSelector((state) => state.userdata);
+  console.log(userdata);
   // correctQuestion numbers
   const correctQues = userdata.users.userAnswers;
   if (correctQues) {

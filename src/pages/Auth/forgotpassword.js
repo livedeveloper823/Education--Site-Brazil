@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import LogoImg from "../../assets/logo1.png";
 import { useNavigate } from "react-router-dom";
+import AuthLogo from "../../components/AuthLogo";
 
 const ForgotPassword = () => {
     const navigate = useNavigate()
@@ -13,10 +13,10 @@ const ForgotPassword = () => {
         } else alert("Passwords not match!");
     }
   return (
-    <div className="flex justify-center items-center h-screen text-black">
+    <div className="flex justify-center items-center h-screen text-gray-700">
       <div className="bg-[#ffffff] w-[500px] md:p-[80px] p-5 rounded-lg md:text-lg text-sm">
         <div>
-          <img src={LogoImg} alt="" />
+          <AuthLogo/>
         </div>
         <div className="text-center text-2xl font-bold md:my-10 my-5">
           Esqueci minha senha.
@@ -53,7 +53,7 @@ const ForgotPassword = () => {
           <div className="flex justify-center">
             <button
               type="submit"
-              className="items-center px-10 py-2 bg-green-600 cursor-pointer hover:bg-green-500 text-[20px] text-white text-center mt-5 rounded-md"
+              className="items-center px-10 py-2 bg-basicColor cursor-pointer hover:bg-hoverColor text-[20px] text-white text-center mt-5 rounded-md"
             >
               Alterar senha
             </button>

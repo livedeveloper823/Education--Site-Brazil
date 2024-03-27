@@ -11,7 +11,7 @@ import subjectsdata from './subjectsdata';
 import userdata from './userdata'
 import rankingdata from './rankingdata';
 import notificationdata from './notificationdata';
-import userWorkingTime from './workingtime';
+// import userWorkingTime from './workingtime';
 // ==============================|| COMBINE REDUCERS ||============================== //
 
 const reducers = combineReducers({
@@ -24,7 +24,7 @@ const reducers = combineReducers({
   userdata,
   rankingdata,
   notificationdata,
-  userWorkingTime,
+  // userWorkingTime,
 });
 
 export default reducers;

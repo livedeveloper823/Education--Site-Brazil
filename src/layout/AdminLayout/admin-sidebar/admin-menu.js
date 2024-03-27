@@ -36,8 +36,8 @@ const AdminMenu = () => {
   return (
     <div className="md:mt-[100px] text-[#ffffff] max-[1280px]:text-sm flex flex-col justify-between">
       <div>
-        {menuItem.map((item) => (
-          <a href={item.path}>
+        {menuItem.map((item, index) => (
+          <a href={item.path} key={index}>
             <div className={CommonStyle} style={{ marginBottom: "15px" }}>
               <div
                 className={
