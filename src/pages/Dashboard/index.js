@@ -36,10 +36,33 @@ const Dashboard = () => {
 
     return <div>Current Time: {currentTime.toLocaleTimeString()}</div>;
   };
-  //Import Data from Database via redux
+  //User's visit time of week
   const userdata = useSelector((state) => state.userdata);
-  console.log(userdata);
-  // correctQuestion numbers
+  const currentTime = new Date();
+  const currentDate = currentTime.getDate() ;
+  console.log(currentDate);
+  const visitTime = userdata.users.visitTime;
+  console.log(visitTime);
+  let totalDailyVisitTime = 0;
+  let interval = 0;
+  if (visitTime) {
+    visitTime
+      .filter((item) => new Date(item.login).getDate() == currentDate)
+      .map((item, index) => {
+        console.log("after filter", item);
+        if (index != 0) {
+          const loginTime = item.login;
+          const logoutTime = item.logout;
+          const startTime = new Date(loginTime);
+          const endTime = new Date(logoutTime);
+          interval = endTime.getTime() - startTime.getTime();
+          console.log(interval);
+        }
+        totalDailyVisitTime += interval / 60000;
+      });
+  }
+
+  //Import Data from Database via redux
   const correctQues = userdata.users.userAnswers;
   if (correctQues) {
     correctQues
@@ -107,12 +130,12 @@ const Dashboard = () => {
   }
   let totalCorrection = totalMathCorrection + totalPortCorrection;
   let dailyCorrection = dailyPortCorrection + dailyMathCorrection;
-  let portSuccess = 0;  
+  let portSuccess = 0;
   if (portAnswersNum != 0) {
     portSuccess = (totalPortCorrection / portAnswersNum) * 100;
   }
   let mathSuccess = 0;
-  if (mathAnswersNum != 0){
+  if (mathAnswersNum != 0) {
     mathSuccess = (totalMathCorrection / mathAnswersNum) * 100;
   }
   //Chart Data
@@ -180,7 +203,7 @@ const Dashboard = () => {
             </div>
             <div>
               <div>Jogos finalizados pelos alunos</div>
-              <div>1 Jogos</div>
+              <div>{totalDailyVisitTime.toFixed(0)}Minuto</div>
             </div>
           </div>
           <ChartDay dailyCorrect={dailyCorrection} />
