@@ -34,22 +34,19 @@ const Dashboard = () => {
   const CurrentTime = () => {
     const currentTime = useTime();
 
-    return <div>Current Time: {currentTime.toLocaleTimeString()}</div>;
+    return <div>Hora atual: {currentTime.toLocaleTimeString()}</div>;
   };
   //User's visit time of week
   const userdata = useSelector((state) => state.userdata);
   const currentTime = new Date();
   const currentDate = currentTime.getDate() ;
-  console.log(currentDate);
   const visitTime = userdata.users.visitTime;
-  console.log(visitTime);
   let totalDailyVisitTime = 0;
   let interval = 0;
   if (visitTime) {
     visitTime
       .filter((item) => new Date(item.login).getDate() == currentDate)
       .map((item, index) => {
-        console.log("after filter", item);
         if (index != 0) {
           const loginTime = item.login;
           const logoutTime = item.logout;
@@ -74,7 +71,6 @@ const Dashboard = () => {
           const mathDate = new Date(item.date);
           const mathDateYear = mathDate.getFullYear();
           const mathDateMonth = mathDate.getMonth() + 1;
-          // const mathDateDate = mathDate.getDate();
           if (month == mathDateMonth && year == mathDateYear) {
             mathAnswersNum++;
           }
@@ -106,7 +102,6 @@ const Dashboard = () => {
           const portDate = new Date(item.date);
           const portDateYear = portDate.getFullYear();
           const portDateMonth = portDate.getMonth() + 1;
-          // const portDateDate = portDate.getDate();
           if (month === portDateMonth && year === portDateYear)
             portAnswersNum = portAnswersNum + 1;
         });
@@ -160,12 +155,8 @@ const Dashboard = () => {
         max: portAnswersNum,
       },
     },
-    // vAxis: {
-    //   title: "Assuntos",
-    // },
     colors: ["#22ff69"],
     titleTextStyle: {
-      // i.e. 'Times New Roman'
       fontSize: 24,
     },
   };
@@ -181,12 +172,8 @@ const Dashboard = () => {
         max: mathAnswersNum,
       },
     },
-    // vAxis: {
-    //   title: "Assuntos",
-    // },
     colors: ["#22ff69"],
     titleTextStyle: {
-      // i.e. 'Times New Roman'
       fontSize: 24,
     },
   };
@@ -203,7 +190,7 @@ const Dashboard = () => {
             </div>
             <div>
               <div>Jogos finalizados pelos alunos</div>
-              <div>{totalDailyVisitTime.toFixed(0)}Minuto</div>
+              <div>{totalDailyVisitTime.toFixed(0)}(Minuto)</div>
             </div>
           </div>
           <ChartDay dailyCorrect={dailyCorrection} />

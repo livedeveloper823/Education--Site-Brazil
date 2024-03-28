@@ -37,11 +37,9 @@ const Menu = () => {
   const navigate = useNavigate();
 
   const handlesignout = () => {
-    console.log("Clicked");
     instance
       .post("/auth/logout", { email: userEmail })
       .then((res) => {
-        console.log(res);
         localStorage.clear();
         navigate("/");
       })

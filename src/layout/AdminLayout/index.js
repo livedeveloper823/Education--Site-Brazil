@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import Header from "../../components/Header";
 import AdminSidebar from "./admin-sidebar";
 import { ToastContainer } from "react-toastify";
+import { TimeoutProvider } from "../../provider/TimeOutProvider";
 
 // ==============================|| MAIN LAYOUT ||============================== //
 
@@ -15,7 +16,9 @@ const AdminLayout = () => {
       </div>
       <div className="md:w-[85%] md:left-[15%] h-screen relative">
         <Header />
-        <Outlet />
+        <TimeoutProvider>
+          <Outlet />
+        </TimeoutProvider>
         {/* <Footer /> */}
       </div>
     </div>
