@@ -28,6 +28,7 @@
     "contexts": "^0.0.0",
     "copy-to-clipboard": "^3.3.3",
     "electron-is-dev": "^3.0.1",
+    "firebase": "^10.10.0",
     "hamburger-react": "^2.5.0",
     "html-react-parser": "^5.1.5",
     "html-to-react": "^1.7.0",
