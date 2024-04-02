@@ -5,7 +5,7 @@ import { instance } from "../../utils/axios";
 import AuthLogo from "../../components/AuthLogo";
 
 const VerifyEmail = () => {
-  const showNotification = useNotification();
+  const {showNotification} = useNotification();
   const [verifyCode, setVerifyCode] = useState({ active: "" });
   console.log("verifyCode", verifyCode);
   const navigate = useNavigate();

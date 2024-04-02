@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "../store";
-import { changeAdminData, getAdminData } from "../store/reducers/userdata";
+import { changeAdminData } from "../store/reducers/userdata";
 
 const AdminProfile = () => {
   const userdata = useSelector((state) => state.userdata);
@@ -71,10 +71,6 @@ const AdminProfile = () => {
       dispatch(changeAdminData(newAdminData));
     }
   };
-
-  useEffect(() => {
-    dispatch(getAdminData());
-  }, []);
 
   return (
     <div>
