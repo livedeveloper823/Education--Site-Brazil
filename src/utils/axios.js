@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const instance = axios.create({ baseURL: process.env.REACT_APP_API_URL || 'http://138.201.123.93:8001/api/v1/' });
+export const instance = axios.create({ baseURL: process.env.REACT_APP_API_URL || 'http://136.243.172.88:8001/api/v1/' });
 
 // ==============================|| AXIOS - FOR MOCK SERVICES ||============================== //
 
