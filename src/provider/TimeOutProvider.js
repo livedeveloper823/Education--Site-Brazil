@@ -26,7 +26,7 @@ export function TimeoutProvider({ children }) {
           .catch((err) => {
             console.log(err);
           });
-      }, 1000);
+      }, 1800000);
     };
 
     // listen for specific window events to ensure user is still active

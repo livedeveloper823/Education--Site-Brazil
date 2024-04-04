@@ -24,6 +24,7 @@ const day = longDate.getDay();
 const date = longDate.getDate();
 let portAnswersNum = 0;
 let mathAnswersNum = 0;
+let totalAnswersNum = 0;
 let dailyMathCorrection = 0;
 let dailyPortCorrection = 0;
 let totalMathCorrection = 0;
@@ -53,7 +54,6 @@ const Dashboard = () => {
           const startTime = new Date(loginTime);
           const endTime = new Date(logoutTime);
           interval = endTime.getTime() - startTime.getTime();
-          console.log(interval);
         }
         totalDailyVisitTime += interval / 60000;
       });
@@ -119,7 +119,6 @@ const Dashboard = () => {
           if (month == portDateMonth && year == portDateYear) {
             totalPortCorrection = totalPortCorrection + 1;
           }
-          console.log(dailyPortCorrection, totalPortCorrection);
         });
       });
   }
@@ -127,20 +126,22 @@ const Dashboard = () => {
   let dailyCorrection = dailyPortCorrection + dailyMathCorrection;
   let portSuccess = 0;
   if (portAnswersNum != 0) {
-    portSuccess = (totalPortCorrection / portAnswersNum) * 100;
+    portSuccess = ((portAnswersNum-totalPortCorrection) / portAnswersNum) * 100;
   }
   let mathSuccess = 0;
   if (mathAnswersNum != 0) {
-    mathSuccess = (totalMathCorrection / mathAnswersNum) * 100;
+    mathSuccess = ( totalMathCorrection/ mathAnswersNum) * 100;
   }
+  console.log("Load");
+  totalAnswersNum = mathAnswersNum + portAnswersNum;
   //Chart Data
   const portData = [
     ["City", "Taxa de sucesso"],
-    [`Português ${mathSuccess.toFixed(2)}%`, totalPortCorrection],
+    [`Português ${portSuccess.toFixed(2)}%`, totalPortCorrection],
   ];
   const mathData = [
     ["City1", "Texa de sucesso"],
-    [`Matemática ${portSuccess.toFixed(2)}%`, totalMathCorrection],
+    [`Matemática ${mathSuccess.toFixed(2)}%`, totalMathCorrection],
   ];
 
   const portOptions = {
@@ -190,7 +191,7 @@ const Dashboard = () => {
             </div>
             <div>
               <div>Jogos finalizados pelos alunos</div>
-              <div>{totalDailyVisitTime.toFixed(0)}(Minuto)</div>
+              <div>{totalAnswersNum}</div>
             </div>
           </div>
           <ChartDay dailyCorrect={dailyCorrection} />
@@ -202,9 +203,10 @@ const Dashboard = () => {
                 <WatchOutlinedIcon className="text-sky-800" />
               </div>
               <div>
-                <div>Jogos finalizados pelos alunos</div>
+                <div>Tempo médio gasto</div>
                 <div>
-                  {year}.{month}.{date}.{days[day]}
+                  {/* {year}.{month}.{date}.{days[day]} */}
+                  {totalDailyVisitTime.toFixed(0)}(Minuto)
                 </div>
               </div>
             </div>
