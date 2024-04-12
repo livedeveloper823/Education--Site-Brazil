@@ -9,7 +9,7 @@ import { TimeoutProvider } from "../../provider/TimeOutProvider";
 
 const MainLayout = () => {
   return (
-    <div className="flex">
+    <div>
       <div className="md:fixed md:w-[15%] md:h-screen  md:visible invisible h-0">
         <Sidebar />
       </div>

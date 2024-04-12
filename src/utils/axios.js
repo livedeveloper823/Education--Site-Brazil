@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const instance = axios.create({ baseURL: process.env.REACT_APP_API_URL || 'https://45.156.119.243:8001/api/v1/' });
+export const instance = axios.create({ baseURL: process.env.REACT_APP_API_URL || 'https://backend.simplificaeducacao.com.br/api/v1/' });
 
 // ==============================|| AXIOS - FOR MOCK SERVICES ||============================== //
 

@@ -48,7 +48,7 @@ const Register = () => {
           instance.post("/auth/sendcode", email).then((res) => {
             localStorage.setItem("token", res.data.data.token);
           });
-					showNotification("Register Successful", "success");
+					showNotification("Cadastro realizado com sucesso!", "success");
           navigate("/verifyemail");
         }
       })
@@ -62,7 +62,7 @@ const Register = () => {
         // }
         else {
           // toast.warning("Erro do usuário!");
-          showNotification(error.data.msg, "warning");
+          showNotification("Tente novamente!", "warning");
         }
       });
   };

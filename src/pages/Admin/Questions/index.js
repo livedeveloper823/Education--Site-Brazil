@@ -235,7 +235,7 @@ const AdminQuestions = () => {
                   disabled={questionData.type === "correct" ? true : false}
                   placeholder="Alternativas"
                   type="text"
-                  className="w-full border-2 rounded-lg outline-none md:p-2 p-1"
+                  className="w-full border-2 border-gray-300 rounded-lg outline-none md:p-2 p-1"
                   value={listItem}
                   onChange={(e) => setListItem(e.target.value)}
                 ></input>
@@ -254,7 +254,7 @@ const AdminQuestions = () => {
               <label>
                 Diciplina
                 <select
-                  className="w-full outline-none border-2 md:py-2 rounded"
+                  className="w-full outline-none border-gray-300 border-2 md:py-2 rounded"
                   // onChange={selectSubject}
                   onChange={(e) =>
                     setQuestionData({
@@ -280,7 +280,7 @@ const AdminQuestions = () => {
               <label>
                 Assunto
                 <select
-                  className="w-full outline-none border-2 md:py-2 rounded"
+                  className="w-full outline-none border-2 border-gray-300 md:py-2 rounded"
                   defaultValue="Selecione"
                   key="subject"
                   onChange={(e) =>
@@ -304,7 +304,7 @@ const AdminQuestions = () => {
               <label>
                 Nível
                 <select
-                  className="w-full outline-none border-2 md:py-2 rounded"
+                  className="w-full outline-none border-2 border-gray-300 md:py-2 rounded"
                   onChange={(e) =>
                     setQuestionData({ ...questionData, level: e.target.value })
                   }

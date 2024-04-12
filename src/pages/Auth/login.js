@@ -16,7 +16,7 @@ const Login = () => {
       .post("/auth/login", loginData)
       .then((res) => {
         // toast.success("LoggedIn Successful");
-        showNotification("Logined Successful", "success");
+        // showNotification("Logined Successful", "success");
         if (res.status === 200) {
           const user = res.data.data.user;
           localStorage.setItem("token", res.data.data.token);
@@ -41,7 +41,7 @@ const Login = () => {
         } 
         else {
           // toast.error("Solicitação ruim!");
-          showNotification(error.data.msg, "error");
+          showNotification("Nenhum usuário!", "error");
         }
       });
   };

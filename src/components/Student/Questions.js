@@ -119,7 +119,7 @@ const Question = (props) => {
               <div className="md:none flex gap-2 items-end md:text-lg text-sm">
                 <button
                   type="submit"
-                  className="bg-basicColor hover:bg-hoverColor rounded-md text-white md:px-4 md:py-2 px-2 py-1 border-2 border-green-600"
+                  className="bg-basicColor hover:bg-hoverColor rounded-md text-white md:px-4 md:py-2 px-2 py-1 border-2 border-green-800"
                 >
                   Submit
                 </button>

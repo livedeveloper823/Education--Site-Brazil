@@ -47,7 +47,7 @@ const DropTopic = (props) => {
           <div className="flex justify-end mb-4">
             <input
               type="text"
-              className="w-36 outline-none text-center border-2 px-3 py-1 rounded-l-full"
+              className="w-36 outline-none text-center border-2 border-gray-300 px-3 py-1 rounded-l-full"
               onChange={(e) => setTopic({ topic: e.target.value })}
             />
             <button

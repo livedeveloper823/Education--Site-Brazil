@@ -27,6 +27,7 @@ const Notifications = () => {
     dispatch(addNotifications(notificationData));
     handleClose();
   };
+
   return (
     <div className="md:px-0 px-5">
       <div className="mt-[50px] md:ml-[100px] md:text-3xl text-xl font-bold">
@@ -84,6 +85,7 @@ const Notifications = () => {
               onClick={handleClose}
             >
               Fechar
+              ""
             </div>
             <div
               className="bg-basicColor md:p-3 py-1 px-2 text-white font-bold rounded cursor-pointer hover:bg-hoverColor"

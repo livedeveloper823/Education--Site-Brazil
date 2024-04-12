@@ -60,8 +60,9 @@
     "toast": "^0.5.4",
     "web-vitals": "^3.5.2"
   },
+  
   "scripts": {
-    "start": "cross-env HTTPS=true SSL_CRT_FILE=cert.pem SSL_KEY_FILE=key.pem react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

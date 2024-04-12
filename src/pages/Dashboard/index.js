@@ -35,7 +35,7 @@ const Dashboard = () => {
   const CurrentTime = () => {
     const currentTime = useTime();
 
-    return <div>Hora atual: {currentTime.toLocaleTimeString()}</div>;
+    return <div className="md:visible">Hora atual: {currentTime.toLocaleTimeString()}</div>;
   };
   //User's visit time of week
   const userdata = useSelector((state) => state.userdata);
@@ -185,7 +185,7 @@ const Dashboard = () => {
       </TimeProvider>
       <div className="md:grid grid-cols-2 md:gap-20 mb-10">
         <div>
-          <div className="flex bg-white items-center px-10 py-5 gap-10 mb-5 rounded-xl">
+          <div className="flex bg-white items-center md:px-10 px-5 md:py-5 py-3 gap-10 mb-5 rounded-xl">
             <div className="bg-gray-300 p-3">
               <CastConnectedOutlinedIcon className="text-sky-800" />
             </div>
@@ -198,7 +198,7 @@ const Dashboard = () => {
         </div>
         <div className="mt-10 md:mt-0">
           <div>
-            <div className="flex bg-white items-center px-10 py-5 gap-10 mb-5 rounded-xl">
+            <div className="flex bg-white items-center md:px-10 px-5 md:py-5 py-3 gap-10 mb-5 rounded-xl">
               <div className="bg-gray-300 p-3">
                 <WatchOutlinedIcon className="text-sky-800" />
               </div>

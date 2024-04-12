@@ -16,12 +16,12 @@ const VerifyEmail = () => {
       .then((res) => {
         console.log("res", res);
         navigate("/registersuccess");
-        showNotification("Verify Successful!", "success");
+        showNotification("Verifique com sucesso!", "success");
       })
       .catch((err) => {
         const error = err.response;
         console.log("err",err);
-        showNotification(error.data.msg, "error");
+        showNotification("Tente novamente!", "error");
       });
   };
   return (

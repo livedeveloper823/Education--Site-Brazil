@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+// cross-env HTTPS=true SSL_CRT_FILE=cert.pem SSL_KEY_FILE=key.pem
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
