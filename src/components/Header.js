@@ -135,7 +135,8 @@ const Header = () => {
                   onClick={() => setOpen(!open)}
                 >
                   <QuizIcon className="text-2xl mr-2 my-1" /> Questões
-                </a>
+                </a> 
+                {/* Questões */}
                 <a
                   className="block hover:bg-hoverColor px-5 my-1 rounded-md"
                   href="/admin/notifications"
